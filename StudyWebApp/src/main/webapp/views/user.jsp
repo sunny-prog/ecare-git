@@ -8,15 +8,16 @@
     <div>
       <table>
         <thead>
-          <tr><th><strong>Name</strong></th><th><strong>Email</strong></th><th><strong>Age</strong></th><th><strong>delete</strong></th></tr>
+          <tr><th><strong>Name</strong></th><th><strong>Surname</strong></th><th><strong>Email</strong></th><th><strong>Age</strong></th><th><strong>delete</strong></th></tr>
         </thead>
         <tbody>
         <c:forEach var="user" items="${requestScope.list}">
           <tr>
             <td>${user.name}</td>
+            <td>${user.surname}</td>
             <td>${user.email}</td>
             <td>${user.age}</td>
-            <td><a href='<%= request.getContextPath() %>/views/UserDelete.go?email=${user.email}'>Del</a></td>
+            <td><a href='<%= request.getContextPath() %>/views/UserDelete.go?id=${user.id}'>Del</a></td>
           </tr>
         </c:forEach>
         </tbody>
