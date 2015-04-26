@@ -1,4 +1,5 @@
 package entity;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,62 +8,62 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class User {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="id") 
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
 	private Long id;
 
-	@Column(name="name") 
-    private String name;
-    
-	@Column(name="surname") 
-    private String surname;
-	
-	@Column(name="email") 
-    private String email;
-	
-	@Column(name="age") 
-    private Integer age;
-	
-    public User(){
-        super();
-    }
+	@Column(name = "name")
+	private String name;
 
-    public User(Long id, String name, String surname, String email, Integer age){
-        this.id = id;
-    	this.name = name;
-    	this.surname = surname;
-        this.email = email;
-        this.age = age;
-    }
+	@Column(name = "surname")
+	private String surname;
 
-    public String getName() {
-        return name;
-    }
+	@Column(name = "email")
+	private String email;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	@Column(name = "age")
+	private Integer age;
 
-    public String getEmail() {
-        return email;
-    }
+	public User() {
+		super();
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public User(Long id, String name, String surname, String email, Integer age) {
+		this.id = id;
+		this.name = name;
+		this.surname = surname;
+		this.email = email;
+		this.age = age;
+	}
 
-    public Integer getAge() {
-        return age;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-    
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Integer getAge() {
+		return age;
+	}
+
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+
 	public Long getId() {
 		return id;
 	}

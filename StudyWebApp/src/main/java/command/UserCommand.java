@@ -11,13 +11,11 @@ public class UserCommand extends FrontCommand {
 	 
     @Override
     public void execute() throws ServletException, IOException {
-        //String action = getRequest().getParameter("action");
-       // userService = new UserService(getContext());
         loadUsersList();
     }
 
     public void loadUsersList() throws ServletException, IOException{
-        UserService userService = new UserService(getContext());
+    	UserService userService = serviceLocator.getService("userService");
         List<User> list = userService.getAll();
         getRequest().setAttribute("list", list);
         forward("/views/user.jsp") ;

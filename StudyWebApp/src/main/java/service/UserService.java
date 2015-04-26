@@ -5,35 +5,27 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityNotFoundException;
-import javax.servlet.ServletContext;
+import javax.persistence.Query;
 
-import dao.UserDAO;
-import daoImpl.UserDAOImpl;
 import entity.User;
 
 public class UserService {
-	private EntityManager em = null;
-	private ServletContext ctx = null;
-	private UserDAO dao = null;
+	private EntityManagerFactory emf = null;
 
-	public UserService(ServletContext ctx) {
+	public UserService(EntityManagerFactory emf) {
 		super();
-		this.ctx = ctx;
-		em = getEntityManager();
-		dao = new UserDAOImpl();
-		dao.setEntityManager(em);
+		this.emf = emf;
 	}
 
-	protected void finalize() {
-		em.close();
-	}
-
+	@SuppressWarnings("unchecked")
 	public List<User> getAll() {
+		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
-		List<User> userList = dao.getAll();
+		Query query = em.createQuery("SELECT u FROM User u");
+		List<User> users = query.getResultList();
 		em.getTransaction().commit();
-		// em.close();
-		return userList;
+		em.close();
+		return users;
 	}
 
 	/**
@@ -46,12 +38,16 @@ public class UserService {
 	 *             when no user is found.
 	 */
 	public User getUserById(Long userId) {
-		User user = dao.getUserById(userId);
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		User user = em.find(User.class, userId);
+		if (user == null) {
+			throw new EntityNotFoundException("Can't find User for ID "
+					+ userId);
+		}
+		em.getTransaction().commit();
+		em.close();
 		return user;
-	}
-
-	public void delete(String email) {
-		dao.delete(email);
 	}
 
 	/**
@@ -61,23 +57,15 @@ public class UserService {
 	 *            the artist Id.
 	 */
 	public void deleteUserById(Long userId) {
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
 		User user = em.find(User.class, userId);
 		if (user == null) {
 			throw new EntityNotFoundException("Can't find User for ID "
 					+ userId);
 		}
-		em.getTransaction().begin();
-		dao.delete(user);
+		em.remove(user);
 		em.getTransaction().commit();
-		// em.close();
-	}
-
-	public EntityManager getEntityManager() {
-		// Obtain a database connection:
-		EntityManagerFactory emf = (EntityManagerFactory) ctx
-				.getAttribute("emf");
-
-		EntityManager em = emf.createEntityManager();
-		return em;
+		em.close();
 	}
 }

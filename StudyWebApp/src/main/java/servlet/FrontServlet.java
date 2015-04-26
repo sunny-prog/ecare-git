@@ -53,8 +53,8 @@ public class FrontServlet extends HttpServlet {
 		final String commandClassName = "command."
 				+ (matcher.find() ? matcher.group(1) : "") + "Command";
 
-		// final String commandClassName = "command." +
-		// request.getParameter("command") + "Command";
+		 //final String commandClassName = "command." +
+		 //request.getParameter("command") + "Command";
 		try {
 			result = Class.forName(commandClassName);
 		} catch (ClassNotFoundException e) {

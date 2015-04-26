@@ -7,15 +7,19 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import service.ServiceLocator;
+
 public abstract class FrontCommand{
-    private ServletContext context;
-    private HttpServletRequest request;
-    private HttpServletResponse response;
+    private ServletContext context = null;
+    private HttpServletRequest request = null;
+    private HttpServletResponse response = null;
+    protected ServiceLocator serviceLocator = null;
 
     public void init(ServletContext context, HttpServletRequest request, HttpServletResponse response) {
         this.context = context;
         this.request = request;
         this.response = response; 
+        this.serviceLocator = (ServiceLocator) context.getAttribute("serviceLocator"); 
     }
 
     public abstract void execute() throws ServletException, IOException ;

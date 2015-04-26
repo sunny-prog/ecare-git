@@ -13,7 +13,7 @@ public class UserDeleteCommand extends UserCommand {
 	@Override
 	public void execute() throws ServletException, IOException {
 
-		UserService userService = new UserService(getContext());
+		UserService userService = serviceLocator.getService("userService");
 
 		Long id = Long.valueOf(getRequest().getParameter("id"));
 		userService.deleteUserById(id);
