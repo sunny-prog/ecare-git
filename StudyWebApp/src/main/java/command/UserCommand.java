@@ -2,12 +2,20 @@ package command;
 
 import java.io.IOException;
 import java.util.List;
+
 import javax.servlet.ServletException;
+
 import entity.User;
-import service.UserService;
+import service.IUserService;
+import utils.ServiceLocatorSingleton;
 
 public class UserCommand extends FrontCommand {
-
+	protected IUserService userService = null;
+	
+	public UserCommand(){
+		super();
+		setUserService((IUserService) ServiceLocatorSingleton.getInstance().getService(IUserService.class));
+	}
 	 
     @Override
     public void execute() throws ServletException, IOException {
@@ -15,7 +23,6 @@ public class UserCommand extends FrontCommand {
     }
 
     public void loadUsersList() throws ServletException, IOException{
-    	UserService userService = serviceLocator.getService("userService");
         List<User> list = userService.getAll();
         getRequest().setAttribute("list", list);
         forward("/views/user.jsp") ;
@@ -25,4 +32,12 @@ public class UserCommand extends FrontCommand {
         getRequest().setAttribute("list", list);
         forward("/views/user.jsp") ;
     }
+    
+	public IUserService getUserService() {
+		return userService;
+	}
+
+	public void setUserService(IUserService userService) {
+		this.userService = userService;
+	}
 }

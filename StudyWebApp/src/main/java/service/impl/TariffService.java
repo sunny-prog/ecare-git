@@ -1,4 +1,4 @@
-package service;
+package service.impl;
 
 import java.util.List;
 
@@ -7,9 +7,10 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.Query;
 
+import service.ITariffService;
 import entity.Tariff;
 
-public class TariffService {
+public class TariffService implements ITariffService {
 	private EntityManagerFactory emf = null;
 
 	public TariffService(EntityManagerFactory emf) {

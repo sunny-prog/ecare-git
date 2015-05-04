@@ -1,4 +1,4 @@
-package service;
+package service.impl;
 
 import java.util.List;
 
@@ -7,9 +7,10 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.Query;
 
+import service.IUserService;
 import entity.User;
 
-public class UserService {
+public class UserService implements IUserService {
 	private EntityManagerFactory emf = null;
 
 	public UserService(EntityManagerFactory emf) {
