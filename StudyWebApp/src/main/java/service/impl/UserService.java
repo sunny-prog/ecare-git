@@ -52,10 +52,10 @@ public class UserService implements IUserService {
 	}
 
 	/**
-	 * Delete artist by their Id.
+	 * Delete User by their Id.
 	 *
-	 * @param artistId
-	 *            the artist Id.
+	 * @param UserId
+	 *            the User Id.
 	 */
 	public void deleteUserById(Long userId) {
 		EntityManager em = emf.createEntityManager();
