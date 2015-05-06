@@ -7,9 +7,11 @@ import java.util.Map;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import service.IContractService;
 import service.IOptionService;
 import service.ITariffService;
 import service.IUserService;
+import service.impl.ContractService;
 import service.impl.OptionService;
 import service.impl.TariffService;
 import service.impl.UserService;
@@ -33,6 +35,7 @@ public class ServiceLocatorSingleton {
 	private IUserService userService = null;
 	private ITariffService tariffService = null;
 	private IOptionService optionService = null;
+	private IContractService contractService = null;
 
 	private ServiceLocatorSingleton() {
 		EntityManagerFactory emf = Persistence
@@ -43,6 +46,8 @@ public class ServiceLocatorSingleton {
 		loadService(ITariffService.class, tariffService);
 		optionService = new OptionService(emf);
 		loadService(IOptionService.class, optionService);
+		contractService = new ContractService(emf);
+		loadService(IContractService.class, contractService);
 	}
 
 	void loadService(Class<?> key, Object service) {

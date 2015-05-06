@@ -8,14 +8,14 @@
     <div>
       <table>
         <thead>
-          <tr><th><strong>Title</strong></th><th><strong>Price</strong></th><th><strong>Activation cost</strong></th><th><strong>Delete</strong></th></tr>
+          <tr><th><strong>Title</strong></th><th><strong>Price</strong></th><th><strong>ActivationCost</strong></th><th><strong>Delete</strong></th></tr>
         </thead>
         <tbody>
         <c:forEach var="option" items="${requestScope.list}">
           <tr>
             <td>${option.title}</td>
             <td>${option.price}</td>
-            <td>${option.activationCost}</td>
+           
             <td><a href='<%= request.getContextPath() %>/views/OptionDelete.go?id=${option.id}'>Del</a></td>
           </tr>
         </c:forEach>

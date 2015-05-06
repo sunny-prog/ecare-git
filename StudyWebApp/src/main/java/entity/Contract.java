@@ -30,10 +30,10 @@ public class Contract {
 	@JoinColumn(name = "client_id")
 	private User client;
 	
-	@Column(name = "blocked_by_salesman")
+	@Column(name = "blocked_by_salesman", columnDefinition = "BIT", length = 1)
 	private Boolean blockedBySalesman;
 	
-	@Column(name = "blocked_by_client")
+	@Column(name = "blocked_by_client", columnDefinition = "BIT", length = 1)
 	private Boolean blockedByClient;
 
 	public Long getId() {
