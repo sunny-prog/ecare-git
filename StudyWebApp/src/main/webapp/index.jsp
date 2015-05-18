@@ -2,12 +2,9 @@
 
 <html>
   <head>
-    <title>Main page</title>
+    <title>eCare - The best telecom provider!</title>
   </head>
   <body>
-    <div>
-      <b>Content</b>
-    </div>
     <hr/>
     <a href="<%=request.getContextPath()%>/views/User.go">List of users</a>
     <a href="<%=request.getContextPath()%>/views/Tariff.go">List of tariffs</a>

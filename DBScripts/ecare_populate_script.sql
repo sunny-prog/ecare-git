@@ -40,54 +40,6 @@ insert into options values (1023, 'MMS Active', 150, 50);
 UNLOCK TABLES;
 
 --
--- Table `tariffs_options`
---
-
--- SET FOREIGN_KEY_CHECKS=0;
--- drop table if exists tariffs_options;
--- SET FOREIGN_KEY_CHECKS=1;
-
--- create table tariffs_options (
-  -- tariff_id  bigint NOT NULL,
-  -- option_id  bigint NOT NULL,
-  -- primary key (tariff_id, option_id),
-  -- KEY `FK_tariffs_options` (`tariff_id`),
-  -- KEY `FK_options_tariffs` (`option_id`),
-  -- CONSTRAINT `FK_tariffs_options` FOREIGN KEY (`tariff_id`) REFERENCES `tariffs` (`id`)  ON DELETE CASCADE ON UPDATE RESTRICT,
-  -- CONSTRAINT `FK_options_tariffs` FOREIGN KEY (`option_id`) REFERENCES `options` (`id`)  ON DELETE CASCADE ON UPDATE RESTRICT
-  -- )ENGINE=InnoDB DEFAULT CHARSET=utf8;
- 
--- LOCK TABLES `tariffs_options` WRITE;
--- insert into tariffs_options values (1001, 1008);
--- insert into tariffs_options values (1001, 1014);
--- UNLOCK TABLES;
-
---
--- Table `contracts`
---
-SET FOREIGN_KEY_CHECKS=0;
-drop table if exists contracts;
-SET FOREIGN_KEY_CHECKS=1;
-create table contracts (
-  id     bigint NOT NULL AUTO_INCREMENT,
-  contract_number  varchar(11),
-  tariff_id bigint,
-  client_id bigint,
-  blocked_by_salesman bit(1),
-  blocked_by_client bit(1),
-  primary key (id),
-  KEY `FK_contract_tariff` (`tariff_id`),
-  KEY `FK_contract_client` (`client_id`),
-  CONSTRAINT `FK_contract_tariff` FOREIGN KEY (`tariff_id`) REFERENCES `tariffs` (`id`)  ON DELETE CASCADE ON UPDATE RESTRICT,
-  CONSTRAINT `FK_contract_client` FOREIGN KEY (`client_id`) REFERENCES `users` (`id`)  ON DELETE CASCADE ON UPDATE RESTRICT
-  )ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
- 
-LOCK TABLES `contracts` WRITE;
-insert into contracts values (1001, '89118667755', 1002, 1003, b'0', b'1');
-insert into contracts values (1002, '89234563322', 1003, 1004, b'0', b'0');
-UNLOCK TABLES;
-
---
 -- Table `tariffs`
 --
 SET FOREIGN_KEY_CHECKS=0;
@@ -137,4 +89,53 @@ insert into users values (1005, 'Sveta', 'Yys', 'dom@mail.su', 33);
 insert into users values (1006, 'Stephan', 'Lebedenko', 'stepa@km.ru', 47);
 UNLOCK TABLES;
  
+--
+-- Table `tariffs_options`
+--
+
+-- SET FOREIGN_KEY_CHECKS=0;
+-- drop table if exists tariffs_options;
+-- SET FOREIGN_KEY_CHECKS=1;
+
+-- create table tariffs_options (
+  -- tariff_id  bigint NOT NULL,
+  -- option_id  bigint NOT NULL,
+  -- primary key (tariff_id, option_id),
+  -- KEY `FK_tariffs_options` (`tariff_id`),
+  -- KEY `FK_options_tariffs` (`option_id`),
+  -- CONSTRAINT `FK_tariffs_options` FOREIGN KEY (`tariff_id`) REFERENCES `tariffs` (`id`)  ON DELETE CASCADE ON UPDATE RESTRICT,
+  -- CONSTRAINT `FK_options_tariffs` FOREIGN KEY (`option_id`) REFERENCES `options` (`id`)  ON DELETE CASCADE ON UPDATE RESTRICT
+  -- )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ 
+-- LOCK TABLES `tariffs_options` WRITE;
+-- insert into tariffs_options values (1001, 1008);
+-- insert into tariffs_options values (1001, 1014);
+-- UNLOCK TABLES;
+
+--
+-- Table `contracts`
+--
+SET FOREIGN_KEY_CHECKS=0;
+drop table if exists contracts;
+SET FOREIGN_KEY_CHECKS=1;
+create table contracts (
+  id     bigint NOT NULL AUTO_INCREMENT,
+  contract_number  varchar(11),
+  tariff_id bigint,
+  client_id bigint,
+  blocked_by_salesman bit(1), 
+  blocked_by_client bit(1),
+  primary key (id),
+  KEY `FK_contract_tariff` (`tariff_id`),
+  KEY `FK_contract_client` (`client_id`),
+  CONSTRAINT `FK_contract_tariff` FOREIGN KEY (`tariff_id`) REFERENCES `tariffs` (`id`)  ON DELETE RESTRICT ON UPDATE NO ACTION,
+  CONSTRAINT `FK_contract_client` FOREIGN KEY (`client_id`) REFERENCES `users` (`id`)  ON DELETE CASCADE ON UPDATE NO ACTION
+  )ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+ 
+LOCK TABLES `contracts` WRITE;
+insert into contracts values (1001, '89118667755', 1002, 1003, b'0', b'1');
+insert into contracts values (1002, '89234563322', 1003, 1004, b'0', b'0');
+UNLOCK TABLES;
+
+
 select * from users;

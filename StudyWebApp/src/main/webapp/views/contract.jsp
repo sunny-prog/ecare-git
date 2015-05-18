@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html;" trimDirectiveWhitespaces="false" errorPage="error.jsp"%>
+<%@ page language="java" contentType="text/html;" trimDirectiveWhitespaces="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
   <head>
@@ -17,7 +17,7 @@
             <td>${contract.tariff.title}</td>
             <td>${contract.client.name}</td>
             <td>${contract.blockedBySalesman}</td>
-            <td>${contract.blockedByclient}</td>
+            <td>${contract.blockedByClient}</td>
             <td><a href='<%= request.getContextPath() %>/views/ContractDelete.go?id=${contract.id}'>Del</a></td>
           </tr>
         </c:forEach>

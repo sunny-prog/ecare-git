@@ -22,3 +22,14 @@ local.properties
 .classpath
 .settings/
 .loadpath
+
+######################
+# Intellij
+######################
+
+# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm
+
+*.iml
+
+## Directory-based project format:
+.idea/

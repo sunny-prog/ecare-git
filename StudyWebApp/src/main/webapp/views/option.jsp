@@ -15,7 +15,7 @@
           <tr>
             <td>${option.title}</td>
             <td>${option.price}</td>
-           
+            <td>${option.activationCost}</td>
             <td><a href='<%= request.getContextPath() %>/views/OptionDelete.go?id=${option.id}'>Del</a></td>
           </tr>
         </c:forEach>
