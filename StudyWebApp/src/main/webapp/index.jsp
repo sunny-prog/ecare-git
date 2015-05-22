@@ -1,14 +1,27 @@
-<%@ page language="java" contentType="text/html;" trimDirectiveWhitespaces="false" errorPage="error.jsp"%>
+<%@ page language="java" contentType="text/html;" trimDirectiveWhitespaces="false"%>
 
 <html>
   <head>
-    <title>eCare - The best telecom provider!</title>
+      <link href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/shift.css" rel="stylesheet"/>
+      <link rel="stylesheet" href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/bootstrap.css"/>
+      <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css"/>
+   <title>eCare - Enjoy your live!</title>
   </head>
   <body>
-    <hr/>
-    <a href="<%=request.getContextPath()%>/views/User.go">List of users</a>
-    <a href="<%=request.getContextPath()%>/views/Tariff.go">List of tariffs</a>
-    <a href="<%=request.getContextPath()%>/views/Option.go">List of options</a>
-    <a href="<%=request.getContextPath()%>/views/Contract.go">List of contracts</a>
+  <jsp:include page="views/header.jsp"  flush="true">
+      <jsp:param name="subTitle" value="We care about your connection!"/>
+  </jsp:include>
+  <div class="nav">
+      <div class="container">
+          <ul class="pull-left">
+              <li><a href="<%=request.getContextPath()%>/views/Tariff.go">Tariffs</a></li>
+              <li><a href="<%=request.getContextPath()%>/views/Option.go">Options</a></li>
+           </ul>
+          <ul class="pull-right">
+              <li><a href="#">Search</a></li>
+              <li><a href="views/salesman.jsp">Sign in</a></li>
+          </ul>
+      </div>
+  </div>
   </body>
 </html>
