@@ -47,7 +47,7 @@ public class FrontServlet extends HttpServlet {
 	private Class getCommandClass(HttpServletRequest request) {
 
 		Class result;
-		Pattern pattern = Pattern.compile("/StudyWebApp/views/(\\w+).go.*");
+		Pattern pattern = Pattern.compile("/StudyWebApp/(\\w+).go.*");
 		Matcher matcher = pattern.matcher(request.getRequestURI());
 
 		final String commandClassName = "command."
@@ -59,7 +59,7 @@ public class FrontServlet extends HttpServlet {
 			result = Class.forName(commandClassName);
 		} catch (ClassNotFoundException e) {
 			result = UnknownCommand.class;
-		}
+ 		}
 
 		return result;
 	}

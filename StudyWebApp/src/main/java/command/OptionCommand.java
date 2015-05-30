@@ -26,13 +26,7 @@ public class OptionCommand extends FrontCommand {
 	public void loadOptionsList() throws ServletException, IOException {
 		List<Option> list = optionService.getAll();
 		getRequest().setAttribute("list", list);
-		forward("/views/option.jsp");
-	}
-
-	public void loadOptionsList(List<Option> list) throws ServletException,
-			IOException {
-		getRequest().setAttribute("list", list);
-		forward("/views/option.jsp");
+		forward("/views/options.jsp");
 	}
 
 	public IOptionService getOptionService() {

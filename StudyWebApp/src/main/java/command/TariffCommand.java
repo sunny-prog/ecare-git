@@ -26,13 +26,13 @@ public class TariffCommand extends FrontCommand {
 	public void loadTariffsList() throws ServletException, IOException {
 		List<Tariff> list = tariffService.getAll();
 		getRequest().setAttribute("list", list);
-		forward("/views/tariff.jsp");
+		forward("/views/tariffs.jsp");
 	}
 
 	public void loadTariffsList(List<Tariff> list) throws ServletException,
 			IOException {
 		getRequest().setAttribute("list", list);
-		forward("/views/tariff.jsp");
+		forward("/views/tariffs.jsp");
 	}
 
 	public ITariffService getTariffService() {

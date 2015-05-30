@@ -2,10 +2,7 @@ package service.impl;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityNotFoundException;
-import javax.persistence.Query;
+import javax.persistence.*;
 
 import service.IOptionService;
 import entity.Option;
@@ -29,15 +26,6 @@ public class OptionService implements IOptionService {
 		return options;
 	}
 
-	/**
-	 * Find User based on the entity Id.
-	 *
-	 * @param userId
-	 *            the user Id.
-	 * @return User.
-	 * @throws EntityNotFoundException
-	 *             when no user is found.
-	 */
 	public Option getOptionById(Long optionId) {
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
@@ -51,23 +39,78 @@ public class OptionService implements IOptionService {
 		return option;
 	}
 
-	/**
-	 * Delete artist by their Id.
-	 *
-	 * @param artistId
-	 *            the artist Id.
-	 */
 	public void deleteOptionById(Long optionId) {
 		EntityManager em = emf.createEntityManager();
-		em.getTransaction().begin();
-		Option option = em.find(Option.class, optionId);
-		if (option == null) {
-			throw new EntityNotFoundException("Can't find Option for ID "
-					+ optionId);
+		EntityTransaction tx = null;
+		try {
+			// Instantiate a transaction
+			tx = em.getTransaction();
+			tx.begin();
+			Option option = em.find(Option.class, optionId);
+			if (option == null) {
+				throw new EntityNotFoundException("Can't find Option for ID "
+						+ optionId);
+			}
+			em.remove(option);
+			tx.commit();
+		} catch (PersistenceException pex) {
+			pex.printStackTrace();
+			if (tx != null) {
+				tx.rollback();
+			}
+
+		} finally {
+
+
+			em.close();
 		}
-		em.remove(option);
-		em.getTransaction().commit();
-		em.close();
+
 	}
 
+
+	public Option updateOption(Option option) {
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = null;
+		Option storedOption = null;
+		try {
+			tx = em.getTransaction();
+			tx.begin();
+			Long optionId = option.getId();
+			// find() and update() in the same transaction
+			Option foundOption = em.find(Option.class, optionId);
+			if (foundOption == null) {
+				throw new EntityNotFoundException("Can't find Option for ID "
+						+ optionId);
+			}
+			storedOption = em.merge(option);
+			tx.commit();
+		} catch (PersistenceException pex) {
+			pex.printStackTrace();
+			if (tx != null)
+				tx.rollback();
+		} finally {
+			em.close();
+		}
+		return storedOption;
+	}
+
+	public void addOption(Option option) {
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = null;
+
+		Option storedOption = null;
+		try {
+			tx = em.getTransaction();
+			tx.begin();
+			em.persist(option);
+			tx.commit();
+		} catch (PersistenceException pex) {
+			pex.printStackTrace();
+			if (tx != null)
+				tx.rollback();
+		} finally {
+			em.close();
+
+		}
+	}
 }

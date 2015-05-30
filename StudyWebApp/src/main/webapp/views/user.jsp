@@ -1,35 +1,16 @@
-<%@ page language="java" contentType="text/html;" trimDirectiveWhitespaces="false" errorPage="error.jsp"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--
+  Created by IntelliJ IDEA.
+  User: Tatiana
+  Date: 22.05.2015
+  Time: 12:34
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-   <head>
-    <link href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/shift.css" rel="stylesheet">
-    <link rel="stylesheet" href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/bootstrap.css">
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/main.css"/>
-    <title>Clients</title>
-  </head>
-  <body>
-  <jsp:include page="header.jsp"  flush="true">
-    <jsp:param name="subTitle" value="We care about your connection!"/>
-  </jsp:include>
-  <jsp:include page="salesman_menu.jsp"  flush="true"/>
-    <div>
-      <table>
-        <thead>
-          <tr><th><strong>Name</strong></th><th><strong>Surname</strong></th><th><strong>Email</strong></th><th><strong>Age</strong></th><th><strong>delete</strong></th></tr>
-        </thead>
-        <tbody>
-        <c:forEach var="user" items="${requestScope.list}">
-          <tr>
-            <td>${user.name}</td>
-            <td>${user.surname}</td>
-            <td>${user.email}</td>
-            <td>${user.age}</td>
-            <td><a href='<%= request.getContextPath() %>/views/UserDelete.go?id=${user.id}'>Del</a></td>
-          </tr>
-        </c:forEach>
-        </tbody>
-      </table>   
-    </div>
-    <hr/>
-  </body>
+<head>
+    <title></title>
+</head>
+<body>
+
+</body>
 </html>

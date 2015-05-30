@@ -26,13 +26,13 @@ public class ContractCommand extends FrontCommand {
 	public void loadContractsList() throws ServletException, IOException {
 		List<Contract> list = contractService.getAll();
 		getRequest().setAttribute("list", list);
-		forward("/views/contract.jsp");
+		forward("/views/contracts.jsp");
 	}
 
 	public void loadContractsList(List<Contract> list) throws ServletException,
 			IOException {
 		getRequest().setAttribute("list", list);
-		forward("/views/contract.jsp");
+		forward("/views/contracts.jsp");
 	}
 
 	public IContractService getContractService() {

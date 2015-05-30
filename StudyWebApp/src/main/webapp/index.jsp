@@ -14,8 +14,8 @@
   <div class="nav">
       <div class="container">
           <ul class="pull-left">
-              <li><a href="<%=request.getContextPath()%>/views/Tariff.go">Tariffs</a></li>
-              <li><a href="<%=request.getContextPath()%>/views/Option.go">Options</a></li>
+              <li><a href="<%=request.getContextPath()%>/Tariff.go">Tariffs</a></li>
+              <li><a href="<%=request.getContextPath()%>/Option.go">Options</a></li>
            </ul>
           <ul class="pull-right">
               <li><a href="#">Search</a></li>

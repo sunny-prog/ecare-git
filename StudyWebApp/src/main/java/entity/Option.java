@@ -24,6 +24,7 @@ public class Option {
 	
 	@Column(name = "activation_cost")
 	Integer activationCost;
+
 	public Integer getPrice() {
 		return price;
 	}

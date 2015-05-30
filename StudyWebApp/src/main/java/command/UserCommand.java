@@ -25,12 +25,12 @@ public class UserCommand extends FrontCommand {
     public void loadUsersList() throws ServletException, IOException{
         List<User> list = userService.getAll();
         getRequest().setAttribute("list", list);
-        forward("/views/user.jsp") ;
+        forward("/views/users.jsp") ;
     }
     
     public void loadUsersList(List<User> list) throws ServletException, IOException{
         getRequest().setAttribute("list", list);
-        forward("/views/user.jsp") ;
+        forward("/views/users.jsp") ;
     }
     
 	public IUserService getUserService() {
