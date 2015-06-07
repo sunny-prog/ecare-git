@@ -5,7 +5,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import entity.Option;
 
-public class OptionPrepareEditCommand extends OptionCommand {
+public class OptionPrepareUpdateCommand extends OptionCommand {
 
     @Override
     public void execute() throws ServletException, IOException {

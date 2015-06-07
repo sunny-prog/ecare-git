@@ -11,19 +11,19 @@
     <title></title>
 </head>
 <body>
-<div class="nav">
-  <div class="container">
-    <ul class="pull-left">
-      <li><a href="<%=request.getContextPath()%>/Tariff.go">Tariffs</a></li>
+<div class="container">
+    <ul class="nav nav-pills pull-left">
+      <li class=""><a href="<%=request.getContextPath()%>/Tariff.go">Tariffs</a></li>
       <li><a href="<%=request.getContextPath()%>/Option.go">Options</a></li>
       <li><a href="<%=request.getContextPath()%>/Contract.go">Contracts</a></li>
       <li><a href="<%=request.getContextPath()%>/User.go">Clients</a></li>
     </ul>
-    <ul class="pull-right">
+    <ul class="nav nav-pills pull-right">
       <li><a href="#">Search</a></li>
       <li><a href="#">Sign out</a></li>
     </ul>
-  </div>
+
 </div>
+<hr/>
 </body>
 </html>

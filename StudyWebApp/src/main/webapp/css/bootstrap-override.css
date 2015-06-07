@@ -1,0 +1,68 @@
+.table {
+    font-size: 14px
+}
+hr {
+    margin-top: 2px;
+}
+.nav li {
+    padding-bottom: 1px;
+    display: inline;
+}
+.nav ul {
+    padding-bottom: 1px;
+}
+
+.header h1 {
+    color: #fff;
+    font-size: 48px;
+    font-family: 'Shift', sans-serif;
+    font-weight: bold;
+    margin-bottom: 1px;
+    margin-top: 15px;
+    height: 47px;
+}
+
+.header em {
+    font-size: 13px;
+    font-family:  'arial', sans-serif;
+    color: lightsteelblue;
+    margin-left: 37px;
+}
+
+.nav {
+    padding-top: 7px;
+}
+
+
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
+    color: #fff;
+    background-color: lightsteelblue;
+}
+.nav>li>a:hover,
+.nav>li>a:focus {
+    color: black;
+    text-decoration: lightgrey;
+    background-color: lightgrey;
+}
+.nav-pills > .active > a, .nav-pills > .active > a:hover {
+    color: black;
+    text-decoration: lightgrey;
+    background-color: lightsteelblue;
+}
+
+ .active a,
+ .active a:hover, .nav .active a, .nav .active a:hover {
+     color: black;
+     text-decoration: lightgrey;
+    background-color: lightsteelblue;
+}
+.nav-pills > .active > a, .nav-pills > .active > a:hover {
+    background-color: red;
+}
+
+.red .active a,
+.red .active a:hover {
+    background-color: red !important;
+}
+

@@ -23,5 +23,6 @@
           </ul>
       </div>
   </div>
+  <jsp:include page="views/footer.jsp" flush="true"/>
   </body>
 </html>
