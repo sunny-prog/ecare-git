@@ -10,34 +10,29 @@ import service.IUserService;
 import utils.ServiceLocatorSingleton;
 
 public class UserCommand extends FrontCommand {
-	protected IUserService userService = null;
-	
-	public UserCommand(){
-		super();
-		setUserService((IUserService) ServiceLocatorSingleton.getInstance().getService(IUserService.class));
-	}
-	 
+    protected IUserService userService = null;
+
+    public UserCommand() {
+        super();
+        setUserService((IUserService) ServiceLocatorSingleton.getInstance().getService(IUserService.class));
+    }
+
     @Override
     public void execute() throws ServletException, IOException {
         loadUsersList();
     }
 
-    public void loadUsersList() throws ServletException, IOException{
+    public void loadUsersList() throws ServletException, IOException {
         List<User> list = userService.getAll();
         getRequest().setAttribute("list", list);
-        forward("/views/users.jsp") ;
+        forward("/views/users.jsp");
     }
-    
-    public void loadUsersList(List<User> list) throws ServletException, IOException{
-        getRequest().setAttribute("list", list);
-        forward("/views/users.jsp") ;
-    }
-    
-	public IUserService getUserService() {
-		return userService;
-	}
 
-	public void setUserService(IUserService userService) {
-		this.userService = userService;
-	}
+    public IUserService getUserService() {
+        return userService;
+    }
+
+    public void setUserService(IUserService userService) {
+        this.userService = userService;
+    }
 }

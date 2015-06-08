@@ -10,11 +10,12 @@ import javax.persistence.Query;
 import service.IUserService;
 import entity.User;
 
-public class UserService implements IUserService {
+public class UserService extends AbstractCRUDService<User> implements IUserService {
+
 	private EntityManagerFactory emf = null;
 
 	public UserService(EntityManagerFactory emf) {
-		super();
+		super(User.class, emf);
 		this.emf = emf;
 	}
 

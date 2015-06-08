@@ -27,7 +27,7 @@
                         <th><strong>Price</strong></th>
                         <th><strong>Activation cost</strong></th>
                         <th><strong>Operation</strong></th>
-                        <th>Operation</th>
+                        <th><strong>Operation</strong></th>
                     </tr>
                     </thead>
                     <tbody>

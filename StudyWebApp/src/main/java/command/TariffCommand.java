@@ -10,36 +10,30 @@ import utils.ServiceLocatorSingleton;
 import entity.Tariff;
 
 public class TariffCommand extends FrontCommand {
-	protected ITariffService tariffService = null;
+    protected ITariffService tariffService = null;
 
-	public TariffCommand() {
-		super();
-		setTariffService((ITariffService) ServiceLocatorSingleton.getInstance()
-				.getService(ITariffService.class));
-	}
+    public TariffCommand() {
+        super();
+        setTariffService((ITariffService) ServiceLocatorSingleton.getInstance()
+                .getService(ITariffService.class));
+    }
 
-	@Override
-	public void execute() throws ServletException, IOException {
-		loadTariffsList();
-	}
+    @Override
+    public void execute() throws ServletException, IOException {
+        loadTariffsList();
+    }
 
-	public void loadTariffsList() throws ServletException, IOException {
-		List<Tariff> list = tariffService.getAll();
-		getRequest().setAttribute("list", list);
-		forward("/views/tariffs.jsp");
-	}
+    public void loadTariffsList() throws ServletException, IOException {
+        List<Tariff> list = tariffService.getAll();
+        getRequest().setAttribute("list", list);
+        forward("/views/tariffs.jsp");
+    }
 
-	public void loadTariffsList(List<Tariff> list) throws ServletException,
-			IOException {
-		getRequest().setAttribute("list", list);
-		forward("/views/tariffs.jsp");
-	}
+    public ITariffService getTariffService() {
+        return tariffService;
+    }
 
-	public ITariffService getTariffService() {
-		return tariffService;
-	}
-
-	public void setTariffService(ITariffService tariffService) {
-		this.tariffService = tariffService;
-	}
+    public void setTariffService(ITariffService tariffService) {
+        this.tariffService = tariffService;
+    }
 }

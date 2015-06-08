@@ -14,13 +14,13 @@ public class OptionAddUpdateCommand extends OptionCommand {
         option.setActivationCost(Integer.valueOf(getRequest().getParameter("activationCost")));
         if (getRequest().getParameter("id").isEmpty())
         {
-            optionService.addOption(option);
+            optionService.add(option);
         }
         else
         {
             Long optionId = Long.valueOf(getRequest().getParameter("id"));
             option.setId(optionId);
-            optionService.updateOption(option);
+            optionService.update(option);
         }
 
         loadOptionsList();
