@@ -10,7 +10,7 @@ import service.IUserService;
 import utils.ServiceLocatorSingleton;
 
 public class UserCommand extends FrontCommand {
-    protected IUserService userService = null;
+    private IUserService userService = null;
 
     public UserCommand() {
         super();

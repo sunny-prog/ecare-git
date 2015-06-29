@@ -42,13 +42,15 @@
           </div>
         </div>
         <div class="form-group">
-
           <label class="col-sm-2 control-label">Price</label>
 
-          <div class="col-sm-6">
-            <input class="form-control" id="optionPrice"
-                   type="text" name="price"
-                   value="<c:out value="${tariff.price}" />"/>
+          <div class="col-sm-6 inputGroupContainer">
+            <div class="input-group">
+              <input class="form-control" id="tariffPrice"
+                     type="text" name="price"
+                     value="<c:out value="${tariff.price}" />"/>
+              <span class="input-group-addon">&#8381</span>
+            </div>
           </div>
         </div>
 

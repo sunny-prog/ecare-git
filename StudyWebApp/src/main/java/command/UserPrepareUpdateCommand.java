@@ -13,7 +13,7 @@ public class UserPrepareUpdateCommand extends UserCommand {
     @Override
     public void execute() throws ServletException, IOException {
         Long id = Long.valueOf(getRequest().getParameter("id"));
-        User user = userService.get(id);
+        User user = getUserService().get(id);
         getRequest().setAttribute("user", user);
         forward("/views/user.jsp");
     }

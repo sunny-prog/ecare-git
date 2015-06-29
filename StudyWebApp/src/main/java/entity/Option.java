@@ -6,6 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "options")
@@ -16,13 +19,19 @@ public class Option {
 	@Column(name = "id")
 	Long id;
 
+
 	@Column(name = "price")
+	@NotNull
+	@Min(2)
 	Integer price;
 
 	@Column(name = "title")
+	@NotNull
+	@Size(max = 3, message = "Cannot be longer than {max} characters")
 	String title;
 	
 	@Column(name = "activation_cost")
+	@NotNull
 	Integer activationCost;
 
 	public Integer getPrice() {

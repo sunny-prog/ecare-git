@@ -23,15 +23,17 @@
             <ul class="nav nav-pills nav-stacked red" id="NavParent">
                 <li class="">
                     <a href="<%=request.getContextPath()%>/Option.go" onclick="MenuToggle(this)">List All</a></li>
-                <li><a href="<%=request.getContextPath()%>/OptionPrepareAdd.go" onclick="MenuToggle(this)">Add new</a></li>
+                <li><a href="<%=request.getContextPath()%>/OptionPrepareAdd.go" onclick="MenuToggle(this)">Add new</a>
+                </li>
             </ul>
         </div>
         <div class="col-md-8">
             <form class="form-horizontal" role="form" method="POST"
                   action='<%= request.getContextPath() %>/OptionAddUpdate.go' name="frmAddUpdateOption">
                 <% String action = request.getParameter("action");
-                    System.out.println(action);
+                    //System.out.println(action);
                 %>
+                <div style="color:red">${ErrorMessage}</div>
                 <div class="form-group">
 
                     <label class="col-sm-2 control-label">Title</label>
@@ -40,26 +42,34 @@
                         <input class="form-control" id="optionTitle"
                                type="text" name="title"
                                value="<c:out value="${option.title}" />"/>
-                     </div>
+                        <div style="color:red">${titleErrorMessage}</div>
+                    </div>
                 </div>
                 <div class="form-group">
 
                     <label class="col-sm-2 control-label">Price</label>
 
-                    <div class="col-sm-6">
-                        <input class="form-control" id="optionPrice"
-                               type="text" name="price"
-                               value="<c:out value="${option.price}" />"/>
+                    <div class="col-sm-6 inputGroupContainer">
+                        <div class="input-group">
+                            <input class="form-control" id="optionPrice"
+                                   type="text" name="price"
+                                   value="<c:out value="${option.price}" />"/>
+                            <span class="input-group-addon">&#8381</span>
+                        </div>
+                        <div style="color:red">${priceErrorMessage}</div>
                     </div>
                 </div>
                 <div class="form-group">
-
                     <label class="col-sm-2 control-label">Activation cost</label>
 
-                    <div class="col-sm-6">
-                        <input class="form-control" id="optionActivationCost"
-                               type="text" name="activationCost"
-                               value="<c:out value="${option.activationCost}" />"/>
+                    <div class="col-sm-6 inputGroupContainer">
+                        <div class="input-group">
+                            <input class="form-control" id="optionActivationCost"
+                                   type="text" name="activationCost"
+                                   value="<c:out value="${option.activationCost}" />"/>
+                            <span class="input-group-addon">&#8381</span>
+                        </div>
+                        <div style="color:red">${activationCostErrorMessage}</div>
                     </div>
                 </div>
                 <%-- if option is updated - id exists and should be sent in request--%>

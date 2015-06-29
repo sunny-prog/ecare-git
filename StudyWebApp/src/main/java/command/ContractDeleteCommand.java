@@ -10,7 +10,7 @@ public class ContractDeleteCommand extends ContractCommand {
 	@Override
 	public void execute() throws ServletException, IOException {
 		Long id = Long.valueOf(getRequest().getParameter("id"));
-		contractService.delete(id);
+		getContractService().delete(id);
 		loadContractsList();
 	}
 }

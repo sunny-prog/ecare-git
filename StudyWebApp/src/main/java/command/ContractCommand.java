@@ -12,9 +12,9 @@ import utils.ServiceLocatorSingleton;
 import entity.Contract;
 
 public class ContractCommand extends FrontCommand {
-    protected IContractService contractService = null;
-    protected IUserService userService = null;
-    protected ITariffService tariffService = null;
+    private IContractService contractService = null;
+    private IUserService userService = null;
+    private ITariffService tariffService = null;
 
     public ContractCommand() {
         super();

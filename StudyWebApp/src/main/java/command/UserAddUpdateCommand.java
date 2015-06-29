@@ -20,13 +20,13 @@ public class UserAddUpdateCommand extends UserCommand {
         user.setAge(Integer.valueOf(getRequest().getParameter("age")));
         if (getRequest().getParameter("id").isEmpty())
         {
-            userService.add(user);
+            getUserService().add(user);
         }
         else
         {
             Long userId = Long.valueOf(getRequest().getParameter("id"));
             user.setId(userId);
-            userService.update(user);
+            getUserService().update(user);
         }
 
         loadUsersList();

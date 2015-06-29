@@ -10,7 +10,7 @@ import utils.ServiceLocatorSingleton;
 import entity.Option;
 
 public class OptionCommand extends FrontCommand {
-	protected IOptionService optionService = null;
+	private IOptionService optionService = null;
 
 	public OptionCommand() {
 		super();

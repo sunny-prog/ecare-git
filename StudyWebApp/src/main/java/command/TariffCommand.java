@@ -10,7 +10,7 @@ import utils.ServiceLocatorSingleton;
 import entity.Tariff;
 
 public class TariffCommand extends FrontCommand {
-    protected ITariffService tariffService = null;
+    private ITariffService tariffService = null;
 
     public TariffCommand() {
         super();

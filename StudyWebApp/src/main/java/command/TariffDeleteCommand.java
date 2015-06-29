@@ -12,7 +12,7 @@ public class TariffDeleteCommand extends TariffCommand {
     @Override
     public void execute() throws ServletException, IOException {
         Long id = Long.valueOf(getRequest().getParameter("id"));
-        tariffService.delete(id);
+        getTariffService().delete(id);
         loadTariffsList();
     }
 }

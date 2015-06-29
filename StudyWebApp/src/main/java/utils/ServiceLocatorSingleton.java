@@ -6,6 +6,8 @@ import java.util.Map;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.validation.Validation;
+import javax.validation.ValidatorFactory;
 
 import service.IContractService;
 import service.IOptionService;
@@ -31,14 +33,15 @@ public class ServiceLocatorSingleton {
 		}
 	}
 
-	EntityManagerFactory emf = null;
+	private EntityManagerFactory emf = null;
 	private IUserService userService = null;
 	private ITariffService tariffService = null;
 	private IOptionService optionService = null;
 	private IContractService contractService = null;
+	private ValidatorFactory vf = null;
 
 	private ServiceLocatorSingleton() {
-		EntityManagerFactory emf = Persistence
+		emf = Persistence
 				.createEntityManagerFactory("StudyWebApp.jpa");
 		userService = new UserService(emf);
 		loadService(IUserService.class, userService);
@@ -48,6 +51,8 @@ public class ServiceLocatorSingleton {
 		loadService(IOptionService.class, optionService);
 		contractService = new ContractService(emf);
 		loadService(IContractService.class, contractService);
+		vf = Validation.buildDefaultValidatorFactory();
+		loadService(ValidatorFactory.class, vf);
 	}
 
 	void loadService(Class<?> key, Object service) {

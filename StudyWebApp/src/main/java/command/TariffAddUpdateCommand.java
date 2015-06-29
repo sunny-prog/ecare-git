@@ -14,13 +14,13 @@ public class TariffAddUpdateCommand extends TariffCommand {
         tariff.setTitle(getRequest().getParameter("title"));
         if (getRequest().getParameter("id").isEmpty())
         {
-            tariffService.add(tariff);
+            getTariffService().add(tariff);
         }
         else
         {
             Long tariffId = Long.valueOf(getRequest().getParameter("id"));
             tariff.setId(tariffId);
-            tariffService.update(tariff);
+            getTariffService().update(tariff);
         }
 
         loadTariffsList();
