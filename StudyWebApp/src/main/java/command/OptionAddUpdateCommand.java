@@ -7,15 +7,63 @@ import javax.validation.ConstraintViolationException;
 import javax.validation.ValidationException;
 import java.io.IOException;
 
+/**
+ * This class provide business logic for "OptionAddUpdate" command.
+ * It validates user's input and distinguishes between Add and Update
+ * business cases. In case of Add command it adds new option to the data base.
+ * In case of update it updates option in the data base.
+ * Finally at the end of the processing it loads options list to the user.
+ *
+ * @author Tatiana
+ * @version 1.0
+ */
 public class OptionAddUpdateCommand extends OptionCommand {
 
     @Override
-    public void execute() throws ServletException, IOException {
+    public final void execute() throws ServletException, IOException {
         Option option = new Option();
-        //If "id" parameter in the request is not empty - we set it before hand (do not want to loose it)
-        if (!getRequest().getParameter("id").isEmpty())
-           option.setId(Long.valueOf(getRequest().getParameter("id")));
 
+        try {
+            //If "id" parameter in the request is not empty - we set it before hand (do not want to loose it)
+            if (!getRequest().getParameter("id").isEmpty()) {
+                option.setId(Long.valueOf(getRequest().getParameter("id")));
+            }
+
+            // check format and validate incoming parameters
+            if (Boolean.TRUE.equals(validationIsFailed(option))) {
+                forward("/views/option.jsp");
+                return;
+            }
+
+            //ADDING new option in case - no id
+            if (getRequest().getParameter("id").isEmpty()) {
+                getOptionService().add(option);
+
+                //Form for updating existing option was fulfilled - id is already generated
+            } else {
+                getOptionService().update(option);
+            }
+
+        } catch (ConstraintViolationException ex) {
+            /* if some validation problems occur during persist and update ib DB */
+            forward("/views/option.jsp");
+            return;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        loadOptionsList();
+    }
+
+    /**
+     * Checks if incoming parameters corresponds proper format. Also validates each parameter by calling
+     * validateValue (Validation bean API), if it has proper format.
+     *
+     * @param option is an object which will be fulfilled with proper canonicalized values, if they are passed in request.
+     * @return true value is returned, if validation failed at least in one place.
+     * @throws ServletException if there is something wrong with the servlet during forward() method call
+     * @throws IOException      if there is something wrong with the IO during forward() method call
+     */
+    private boolean validationIsFailed(final Option option) throws IOException, ServletException {
         try {
             Boolean priceIsOk = isNotBlankField("price") && isNumericFormat("price");
             if (priceIsOk) {
@@ -50,42 +98,17 @@ public class OptionAddUpdateCommand extends OptionCommand {
             getRequest().setAttribute("option", option);
 
             if (!priceIsOk || !activationCostIsOk || !titleIsOk) {
-                forward("/views/option.jsp");
-                return;
+                return true;
             }
 
-            // TO ASK - нужно ли делать валидацию сущности, если я до этого провалидировала значения всех свойств по отдельности?
             validate(option);
-
         } catch (ValidationException ex) {
-            // TO ASK - нужно ли ловить это исключение? Каковы шансы того, что оно у меня вывалится?
             // In case of some validation errors still detected
             getRequest().setAttribute("ErrorMessage", "Data format is incorrect");
-            forward("/views/option.jsp");
-            return;
+            return true;
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
-        try {
-            //ADDING new option case - no id
-            if (getRequest().getParameter("id").isEmpty()) {
-                getOptionService().add(option);
-
-                //Form for updating existing option was fulfilled - id is already generated
-            } else {
-                getOptionService().update(option);
-            }
-
-        } catch (ConstraintViolationException ex) {
-
-            forward("/views/option.jsp");
-            return;
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        loadOptionsList();
+        return false;
     }
-
 }

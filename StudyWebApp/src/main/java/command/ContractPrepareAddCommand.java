@@ -4,12 +4,16 @@ import javax.servlet.ServletException;
 import java.io.IOException;
 
 /**
- * Created by Tatiana on 08.06.2015.
+ * This class provides business logic for "ContractPrepareAdd" command.
+ * It forwards the request to the jsp page to create new contract.
+ *
+ * @author Tatiana
+ * @version 1.0
  */
 public class ContractPrepareAddCommand extends ContractCommand {
 
     @Override
-    public void execute() throws ServletException, IOException {
+    public final void execute() throws ServletException, IOException {
         forward("/views/contract.jsp");
     }
 }
