@@ -14,12 +14,11 @@ import entity.Contract;
 /**
  * This class does main service loading processing. It establishes services for
  * IContractService, IUserService, ITariffService interfaces.
- * This is the first concrete class in the Command classes hierarchy.
  *
  * @author Tatiana
  * @version 1.0
  */
-public class ContractCommand extends FrontCommand {
+public abstract class ContractCommand extends FrontCommand {
     /**
      * Service that provides working with contract functionality.
      */
@@ -48,11 +47,6 @@ public class ContractCommand extends FrontCommand {
                 .getService(ITariffService.class));
     }
 
-    @Override
-    public void execute() throws ServletException, IOException {
-        loadContractsList();
-    }
-
     /**
      * Loads list of contracts currently stored in the DB table "Contract".
      *
@@ -76,7 +70,8 @@ public class ContractCommand extends FrontCommand {
 
     /**
      * Sets service to work with Contract. Used during registration in constructor.
-     * @param  contractService  is a contract service to be set. It should implement IContractService interface.
+     *
+     * @param contractService is a contract service to be set. It should implement IContractService interface.
      */
     public final void setContractService(final IContractService contractService) {
         this.contractService = contractService;
@@ -93,7 +88,8 @@ public class ContractCommand extends FrontCommand {
 
     /**
      * Sets service to work with User. Used during registration in constructor.
-     * @param  userService  is a user service to be set. It should implement IUserService interface.
+     *
+     * @param userService is a user service to be set. It should implement IUserService interface.
      */
     public final void setUserService(final IUserService userService) {
         this.userService = userService;
@@ -110,9 +106,11 @@ public class ContractCommand extends FrontCommand {
 
     /**
      * Sets service to work with Tariff. Used during registration in constructor.
-     *  @param  tariffService  is a tariff service to be set. It should implement ITariffService interface.
+     *
+     * @param tariffService is a tariff service to be set. It should implement ITariffService interface.
      */
     public final void setTariffService(final ITariffService tariffService) {
         this.tariffService = tariffService;
     }
 }
+

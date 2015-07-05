@@ -9,31 +9,32 @@ import service.IOptionService;
 import utils.ServiceLocatorSingleton;
 import entity.Option;
 
-public class OptionCommand extends FrontCommand {
-	private IOptionService optionService = null;
+/**
+ * This class does main service loading processing.
+ *
+ * @author Tatiana
+ * @version 1.0
+ */
+public abstract class OptionCommand extends FrontCommand {
+    private IOptionService optionService = null;
 
-	public OptionCommand() {
-		super();
-		setOptionService((IOptionService) ServiceLocatorSingleton.getInstance()
-				.getService(IOptionService.class));
-	}
+    public OptionCommand() {
+        super();
+        setOptionService((IOptionService) ServiceLocatorSingleton.getInstance()
+                .getService(IOptionService.class));
+    }
 
-	@Override
-	public void execute() throws ServletException, IOException {
-		loadOptionsList();
-	}
+    public void loadOptionsList() throws ServletException, IOException {
+        List<Option> list = optionService.getAll();
+        getRequest().setAttribute("list", list);
+        forward("/views/options.jsp");
+    }
 
-	public void loadOptionsList() throws ServletException, IOException {
-		List<Option> list = optionService.getAll();
-		getRequest().setAttribute("list", list);
-		forward("/views/options.jsp");
-	}
+    public IOptionService getOptionService() {
+        return optionService;
+    }
 
-	public IOptionService getOptionService() {
-		return optionService;
-	}
-
-	public void setOptionService(IOptionService optionService) {
-		this.optionService = optionService;
-	}
+    public void setOptionService(IOptionService optionService) {
+        this.optionService = optionService;
+    }
 }

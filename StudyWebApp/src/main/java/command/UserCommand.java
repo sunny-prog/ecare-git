@@ -9,17 +9,12 @@ import entity.User;
 import service.IUserService;
 import utils.ServiceLocatorSingleton;
 
-public class UserCommand extends FrontCommand {
+public abstract class UserCommand extends FrontCommand {
     private IUserService userService = null;
 
     public UserCommand() {
         super();
         setUserService((IUserService) ServiceLocatorSingleton.getInstance().getService(IUserService.class));
-    }
-
-    @Override
-    public void execute() throws ServletException, IOException {
-        loadUsersList();
     }
 
     public void loadUsersList() throws ServletException, IOException {

@@ -9,18 +9,13 @@ import service.ITariffService;
 import utils.ServiceLocatorSingleton;
 import entity.Tariff;
 
-public class TariffCommand extends FrontCommand {
+public abstract class TariffCommand extends FrontCommand {
     private ITariffService tariffService = null;
 
     public TariffCommand() {
         super();
         setTariffService((ITariffService) ServiceLocatorSingleton.getInstance()
                 .getService(ITariffService.class));
-    }
-
-    @Override
-    public void execute() throws ServletException, IOException {
-        loadTariffsList();
     }
 
     public void loadTariffsList() throws ServletException, IOException {

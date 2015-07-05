@@ -13,10 +13,10 @@
 <body>
 <div class="container">
     <ul class="nav nav-pills pull-left">
-      <li class=""><a href="<%=request.getContextPath()%>/Tariff.go">Tariffs</a></li>
-      <li><a href="<%=request.getContextPath()%>/Option.go">Options</a></li>
-      <li><a href="<%=request.getContextPath()%>/Contract.go">Contracts</a></li>
-      <li><a href="<%=request.getContextPath()%>/User.go">Clients</a></li>
+      <li class=""><a href="<%=request.getContextPath()%>/TariffLoadList.go">Tariffs</a></li>
+      <li><a href="<%=request.getContextPath()%>/OptionLoadList.go">Options</a></li>
+      <li><a href="<%=request.getContextPath()%>/ContractLoadList.go">Contracts</a></li>
+      <li><a href="<%=request.getContextPath()%>/UserLoadList.go">Clients</a></li>
     </ul>
     <ul class="nav nav-pills pull-right">
       <li><a href="#">Search</a></li>

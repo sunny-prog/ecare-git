@@ -15,7 +15,7 @@
             <div class="col-md-2">
                 <ul class="nav nav-pills nav-stacked red" id="NavParent">
                     <li>
-                        <a href="<%=request.getContextPath()%>/Option.go" onclick="MenuToggle(this)">List All</a></li>
+                        <a href="<%=request.getContextPath()%>/OptionLoadList.go" onclick="MenuToggle(this)">List All</a></li>
                     <li><a href="<%=request.getContextPath()%>/OptionPrepareAdd.go" onclick="MenuToggle(this)">Add new</a></li>
                 </ul>
             </div>
