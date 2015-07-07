@@ -36,7 +36,7 @@
                     <tbody>
                     <c:forEach var="contract" items="${requestScope.list}">
                         <tr>
-                            <td>${contract.contractNumber}</td>
+                            <td>${contract.number}</td>
                             <td>${contract.tariff.id}</td>
                             <td>${contract.client.id}</td>
                             <td>${contract.blockedBySalesman}</td>

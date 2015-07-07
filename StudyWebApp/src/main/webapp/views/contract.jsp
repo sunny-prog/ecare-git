@@ -37,9 +37,9 @@
           <label class="col-sm-2 control-label">Contract number</label>
 
           <div class="col-sm-6">
-            <input class="form-control" id="contractContractNumber"
-                   type="text" name="contractNumber"
-                   value="<c:out value="${contract.contractNumber}" />"/>
+            <input class="form-control" id="contractNumber"
+                   type="text" name="number"
+                   value="<c:out value="${contract.number}" />"/>
           </div>
         </div>
         <div class="form-group">

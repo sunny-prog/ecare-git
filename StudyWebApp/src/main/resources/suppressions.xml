@@ -14,4 +14,9 @@
               files="User.java"
               lines="142-209, 210-214"/>
 
+	<suppress checks="JavadocStyle"
+              files="CONSTANT.java"
+              lines="15-26"/>
+              
+
  </suppressions>

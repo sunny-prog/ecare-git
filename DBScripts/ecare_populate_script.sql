@@ -7,9 +7,9 @@ drop table if exists options;
 SET FOREIGN_KEY_CHECKS=1;
 create table options (
   id     bigint NOT NULL AUTO_INCREMENT,
-  title varchar(100),
-  price  int,
-  activation_cost int,
+  title varchar(100) NOT NULL,
+  price  int NOT NULL,
+  activation_cost int NOT NULL,
   primary key (id)
   )ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
  
@@ -47,8 +47,8 @@ drop table if exists tariffs;
 SET FOREIGN_KEY_CHECKS=1;
 create table tariffs (
   id     bigint NOT NULL AUTO_INCREMENT,
-  price  int,
-  title varchar(100),
+  price  int NOT NULL,
+  title varchar(100) NOT NULL,
   primary key (id)
   )ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
  
@@ -76,7 +76,7 @@ create table users (
   name  varchar(50),
   surname varchar(50),
   birth_date date,
-  passport varchar(50),
+  passport varchar(50) NOT NULL,
   address varchar(300),
   email  varchar(50),
   password varchar(50),
@@ -123,11 +123,11 @@ drop table if exists contracts;
 SET FOREIGN_KEY_CHECKS=1;
 create table contracts (
   id     bigint NOT NULL AUTO_INCREMENT,
-  contract_number  varchar(11),
-  tariff_id bigint,
-  client_id bigint,
-  blocked_by_salesman bit(1), 
-  blocked_by_client bit(1),
+  number  varchar(15) NOT NULL,
+  tariff_id bigint NOT NULL,
+  client_id bigint NOT NULL,
+  blocked_by_salesman bit(1) NOT NULL, 
+  blocked_by_client bit(1) NOT NULL,
   primary key (id),
   KEY `FK_contract_tariff` (`tariff_id`),
   KEY `FK_contract_client` (`client_id`),
@@ -136,8 +136,8 @@ create table contracts (
   )ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
  
 LOCK TABLES `contracts` WRITE;
-insert into contracts values (1001, '89118667755', 1002, 1003, b'0', b'1');
-insert into contracts values (1002, '89234563322', 1003, 1004, b'0', b'0');
+insert into contracts values (1001, '9118667755', 1002, 1003, b'0', b'1');
+insert into contracts values (1002, '9234563322', 1003, 1004, b'0', b'0');
 UNLOCK TABLES;
 
 

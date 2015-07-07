@@ -20,7 +20,7 @@ public class ContractAddUpdateCommand extends ContractCommand {
     @Override
     public final void execute() throws ServletException, IOException {
         Contract contract = new Contract();
-        contract.setContractNumber(getRequest().getParameter("contractNumber"));
+        contract.setNumber(getRequest().getParameter("number"));
         contract.setClient(getUserService().get(Long.valueOf(getRequest().getParameter("clientId"))));
         contract.setTariff(getTariffService().get(Long.valueOf(getRequest().getParameter("tariffId"))));
         contract.setBlockedBySalesman(Boolean.valueOf(getRequest().getParameter("blockedBySalesman")));
