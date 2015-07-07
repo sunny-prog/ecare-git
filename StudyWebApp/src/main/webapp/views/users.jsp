@@ -15,7 +15,7 @@
       <div class="col-md-2">
         <ul class="nav nav-pills nav-stacked red" id="NavParent">
           <li>
-            <a href="<%=request.getContextPath()%>/User.go" onclick="MenuToggle(this)">List All</a></li>
+            <a href="<%=request.getContextPath()%>/UserLoadList.go" onclick="MenuToggle(this)">List All</a></li>
           <li><a href="<%=request.getContextPath()%>/UserPrepareAdd.go" onclick="MenuToggle(this)">Add new</a></li>
         </ul>
       </div>
@@ -25,8 +25,10 @@
           <tr>
             <th><strong>Surname</strong></th>
             <th><strong>Name</strong></th>
+            <th><strong>Birthday</strong></th>
+            <th><strong>Passport</strong></th>
+            <th><strong>Address</strong></th>
             <th><strong>Email</strong></th>
-            <th><strong>Age</strong></th>
             <th><strong>Operation</strong></th>
             <th><strong>Operation</strong></th>
           </tr>
@@ -36,8 +38,10 @@
             <tr>
               <td>${user.surname}</td>
               <td>${user.name}</td>
+              <td>${user.birthDay}</td>
+              <td>${user.passport}</td>
+              <td>${user.address}</td>
               <td>${user.email}</td>
-              <td>${user.age}</td>
               <td>
                 <form class="formButton" action="<%= request.getContextPath() %>/UserDelete.go"
                       method="post"><input

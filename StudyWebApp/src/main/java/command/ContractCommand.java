@@ -12,7 +12,7 @@ import utils.ServiceLocatorSingleton;
 import entity.Contract;
 
 /**
- * This class does main service loading processing. It establishes services for
+ * Is responsible for main service loading processing during real ContractCommand initialization. It establishes services for
  * IContractService, IUserService, ITariffService interfaces.
  *
  * @author Tatiana
@@ -105,7 +105,7 @@ public abstract class ContractCommand extends FrontCommand {
     }
 
     /**
-     * Sets service to work with Tariff. Used during registration in constructor.
+     * Sets service to work with Tariff.
      *
      * @param tariffService is a tariff service to be set. It should implement ITariffService interface.
      */
@@ -113,4 +113,3 @@ public abstract class ContractCommand extends FrontCommand {
         this.tariffService = tariffService;
     }
 }
-

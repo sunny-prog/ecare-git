@@ -8,7 +8,7 @@ import javax.validation.ValidationException;
 import java.io.IOException;
 
 /**
- * This class provide business logic for "OptionAddUpdate" command.
+ * Provide business logic for "OptionAddUpdate" command.
  * It validates user's input and distinguishes between Add and Update
  * business cases. In case of Add command it adds new option to the data base.
  * In case of update it updates option in the data base.

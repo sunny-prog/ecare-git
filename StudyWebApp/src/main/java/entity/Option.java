@@ -9,61 +9,69 @@ import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
+/**
+ Provides the model implementation for the Option entity. Represents a row
+ in the &quot;Option_&quot; database table, with each column mapped to a property of this class.
+ *
+ * @author Tatiana
+ * @version 1.0
+ */
 @Entity
 @Table(name = "options")
 public class Option {
+    /**
+     * The primary key of the option.
+     */
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long id;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
-	Long id;
 
+    @Column(name = "price")
+    @NotNull
+    @Min(2)
+    private Integer price;
 
-	@Column(name = "price")
-	@NotNull
-	@Min(2)
-	Integer price;
+    @Column(name = "title")
+    @NotNull
+    @Size(max = 3, message = "Cannot be longer than {max} characters")
+    private String title;
 
-	@Column(name = "title")
-	@NotNull
-	@Size(max = 3, message = "Cannot be longer than {max} characters")
-	String title;
-	
-	@Column(name = "activation_cost")
-	@NotNull
-	Integer activationCost;
+    @Column(name = "activation_cost")
+    @NotNull
+    private Integer activationCost;
 
-	public Integer getPrice() {
-		return price;
-	}
+    public final Integer getPrice() {
+        return price;
+    }
 
-	public void setPrice(Integer price) {
-		this.price = price;
-	}
+    public final void setPrice(final Integer price) {
+        this.price = price;
+    }
 
-	public Long getId() {
-		return id;
-	}
+    public final Long getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public final void setId(final Long id) {
+        this.id = id;
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    public final String getTitle() {
+        return title;
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public final void setTitle(final String title) {
+        this.title = title;
+    }
 
-	public Integer getActivationCost() {
-		return activationCost;
-	}
+    public final Integer getActivationCost() {
+        return activationCost;
+    }
 
-	public void setActivationCost(Integer activationCost) {
-		this.activationCost = activationCost;
-	}
+    public final void setActivationCost(final Integer activationCost) {
+        this.activationCost = activationCost;
+    }
 
 }

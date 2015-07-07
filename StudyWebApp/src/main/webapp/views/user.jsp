@@ -22,7 +22,7 @@
     <div class="col-md-2">
       <ul class="nav nav-pills nav-stacked red" id="NavParent">
         <li class="">
-          <a href="<%=request.getContextPath()%>/User.go" onclick="MenuToggle(this)">List All</a></li>
+          <a href="<%=request.getContextPath()%>/UserLoadList.go" onclick="MenuToggle(this)">List All</a></li>
         <li><a href="<%=request.getContextPath()%>/UserPrepareAdd.go" onclick="MenuToggle(this)">Add new</a></li>
       </ul>
     </div>
@@ -32,16 +32,6 @@
         <% String action = request.getParameter("action");
           System.out.println(action);
         %>
-        <div class="form-group">
-
-          <label class="col-sm-2 control-label">Surname</label>
-
-          <div class="col-sm-6">
-            <input class="form-control" id="userSurname"
-                   type="text" name="surname"
-                   value="<c:out value="${user.surname}" />"/>
-          </div>
-        </div>
         <div class="form-group">
 
           <label class="col-sm-2 control-label">Name</label>
@@ -54,12 +44,42 @@
         </div>
         <div class="form-group">
 
-          <label class="col-sm-2 control-label">Age</label>
+          <label class="col-sm-2 control-label">Surname</label>
 
           <div class="col-sm-6">
-            <input class="form-control" id="userAge"
-                   type="text" name="age"
-                   value="<c:out value="${user.age}" />"/>
+            <input class="form-control" id="userSurname"
+                   type="text" name="surname"
+                   value="<c:out value="${user.surname}" />"/>
+          </div>
+        </div>
+        <div class="form-group">
+
+          <label class="col-sm-2 control-label">Birthday</label>
+
+          <div class="col-sm-6">
+            <input class="form-control" id="userBirthDay"
+                   type="text" name="birthDay"
+                   value="<c:out value="${user.birthDay}" />"/>
+          </div>
+        </div>
+        <div class="form-group">
+
+          <label class="col-sm-2 control-label">Passport</label>
+
+          <div class="col-sm-6">
+            <input class="form-control" id="userPassport"
+                   type="text" name="passport"
+                   value="<c:out value="${user.passport}" />"/>
+          </div>
+        </div>
+        <div class="form-group">
+
+          <label class="col-sm-2 control-label">Address</label>
+
+          <div class="col-sm-6">
+            <input class="form-control" id="userAddress"
+                   type="text" name="address"
+                   value="<c:out value="${user.address}" />"/>
           </div>
         </div>
         <div class="form-group">
@@ -70,6 +90,16 @@
             <input class="form-control" id="userEmail"
                    type="text" name="email"
                    value="<c:out value="${user.email}" />"/>
+          </div>
+        </div>
+        <div class="form-group">
+
+          <label class="col-sm-2 control-label">Password</label>
+
+          <div class="col-sm-6">
+            <input class="form-control" id="userPassword"
+                   type="text" name="password"
+                   value="<c:out value="${user.password}" />"/>
           </div>
         </div>
         <%-- if option is updated - id exists and should be sent in request--%>

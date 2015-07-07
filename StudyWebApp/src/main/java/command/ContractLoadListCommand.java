@@ -4,15 +4,14 @@ import javax.servlet.ServletException;
 import java.io.IOException;
 
 /**
- * This class provides business logic for "ContractLoadList" command.
- * It deletes command by it's id.
+ * Provides business logic for loading all existing in the db contracts.
  *
  * @author Tatiana
  * @version 1.0
  */
 public class ContractLoadListCommand extends ContractCommand {
     @Override
-    public void execute() throws ServletException, IOException {
+    public final void execute() throws ServletException, IOException {
         loadContractsList();
     }
 }

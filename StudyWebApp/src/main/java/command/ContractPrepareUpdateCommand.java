@@ -6,9 +6,9 @@ import javax.servlet.ServletException;
 import java.io.IOException;
 
 /**
- * This class provides business logic for "ContractPrepareUpdate" command.
- * It forwards the request to the jsp page to update existing contract,
- * but before hand it loads the contract to the request attribute.
+ * Provides business logic for preparing everything that is needed to updating
+ * contract process (it loads the contract to the request attribute).
+ * At the end it forwards the request to the jsp page to update existing contract.
  *
  * @author Tatiana
  * @version 1.0

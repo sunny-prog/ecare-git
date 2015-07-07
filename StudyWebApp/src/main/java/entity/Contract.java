@@ -10,79 +10,86 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+/**
+ * Provides the model implementation for the Contract entity. Represents a row
+ * in the &quot;Contract_&quot; database table, with each column mapped to a property of this class.
+ *
+ * @author Tatiana
+ * @version 1.0
+ */
 @Entity
 @Table(name = "contracts")
 public class Contract {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
-	private Long id;
+    /**
+     * The primary key of the contract.
+     */
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long id;
 
-	@Column(name = "contract_number")
-	private String contractNumber;
+    @Column(name = "contract_number")
+    private String contractNumber;
 
-	@OneToOne
-	@JoinColumn(name = "tariff_id")
-	private Tariff tariff;
-	
-	@ManyToOne
-	@JoinColumn(name = "client_id")
-	private User client;
-	
-	@Column(name = "blocked_by_salesman", columnDefinition = "BIT", length = 1)
-	private Boolean blockedBySalesman;
-	
-	@Column(name = "blocked_by_client", columnDefinition = "BIT", length = 1)
-	private Boolean blockedByClient;
+    @OneToOne
+    @JoinColumn(name = "tariff_id")
+    private Tariff tariff;
 
-	public Long getId() {
-		return id;
-	}
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private User client;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @Column(name = "blocked_by_salesman", columnDefinition = "BIT", length = 1)
+    private Boolean blockedBySalesman;
 
-	public String getContractNumber() {
-		return contractNumber;
-	}
+    @Column(name = "blocked_by_client", columnDefinition = "BIT", length = 1)
+    private Boolean blockedByClient;
 
-	public void setContractNumber(String contractNumber) {
-		this.contractNumber = contractNumber;
-	}
+    public final Long getId() {
+        return id;
+    }
 
-	public Tariff getTariff() {
-		return tariff;
-	}
+    public final void setId(final Long id) {
+        this.id = id;
+    }
 
-	public void setTariff(Tariff tariff) {
-		this.tariff = tariff;
-	}
+    public final String getContractNumber() {
+        return contractNumber;
+    }
 
-	public User getClient() {
-		return client;
-	}
+    public final void setContractNumber(final String contractNumber) {
+        this.contractNumber = contractNumber;
+    }
 
-	public void setClient(User client) {
-		this.client = client;
-	}
+    public final Tariff getTariff() {
+        return tariff;
+    }
 
-	public Boolean getBlockedBySalesman() {
-		return blockedBySalesman;
-	}
+    public final void setTariff(final Tariff tariff) {
+        this.tariff = tariff;
+    }
 
-	public void setBlockedBySalesman(Boolean blockedBySalesman) {
-		this.blockedBySalesman = blockedBySalesman;
-	}
+    public final User getClient() {
+        return client;
+    }
 
-	public Boolean getBlockedByClient() {
-		return blockedByClient;
-	}
+    public final void setClient(final User client) {
+        this.client = client;
+    }
 
-	public void setBlockedByClient(Boolean blockedByClient) {
-		this.blockedByClient = blockedByClient;
-	}
+    public final Boolean getBlockedBySalesman() {
+        return blockedBySalesman;
+    }
 
+    public final void setBlockedBySalesman(final Boolean blockedBySalesman) {
+        this.blockedBySalesman = blockedBySalesman;
+    }
 
+    public final Boolean getBlockedByClient() {
+        return blockedByClient;
+    }
+
+    public final void setBlockedByClient(final Boolean blockedByClient) {
+        this.blockedByClient = blockedByClient;
+    }
 }

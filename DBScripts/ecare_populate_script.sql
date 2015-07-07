@@ -75,18 +75,21 @@ create table users (
   id     bigint NOT NULL AUTO_INCREMENT,
   name  varchar(50),
   surname varchar(50),
+  birth_date date,
+  passport varchar(50),
+  address varchar(300),
   email  varchar(50),
-  age int,
+  password varchar(50),
+  role varchar(50),
   primary key (id)
-  )ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+  )ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
  
 LOCK TABLES `users` WRITE;
-insert into users values (1001, 'Ivan', 'Ivanov', 'Ivan.Ivanov@mail.ru', 18);
-insert into users values (1002, 'Anna', 'Urix', 'Anna.Urix@yandex.ru', 22);
-insert into users values (1003, 'Petya', 'Gurevich', 'Petya.Gurevich@gmail.com', 44);
-insert into users values (1004, 'Angelina', 'Pipka', 'Angela@inbox.ru', 63);
-insert into users values (1005, 'Sveta', 'Yys', 'dom@mail.su', 33);
-insert into users values (1006, 'Stephan', 'Lebedenko', 'stepa@km.ru', 47);
+insert into users values (1001, 'Ivan', 'Ivanov', '1949-12-31', '4009564321', 'Sankt-Petersburg, Schastlivaya st. 34-2-123','Ivan.Ivanov@mail.ru', 'Qwerty', 'client');
+insert into users values (1002, 'Anna', 'Urix', '1999-02-01',  '4008964321', 'Voronezh, Leninsky pr. 23-5','Anna.Urix@yandex.ru', '12345', 'salesman');
+insert into users values (1003, 'Petya', 'Gurevich', '1976-10-30',  '4009597221', 'Moskow, Nevinnaya st. 23-4-678', 'Petya.Gurevich@gmail.com', 'root123', 'client');
+insert into users values (1004, 'Angelina', 'Pipka', '1980-07-11',  '5609581321', 'SPb, Schevcova street 39','Angela@inbox.ru', 'stud12345', 'admin');
+
 UNLOCK TABLES;
  
 --

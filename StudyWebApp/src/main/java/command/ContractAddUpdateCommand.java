@@ -6,7 +6,7 @@ import javax.servlet.ServletException;
 import entity.Contract;
 
 /**
- * This class provides business logic for "ContractAddUpdate" command.
+ * Provides business logic for adding and updating business cases.
  * It validates user's input and distinguishes between Add and Update
  * business cases. In case of Add command it adds new contract to the DB.
  * In case of update it updates contract in the DB.

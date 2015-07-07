@@ -4,8 +4,8 @@ import javax.servlet.ServletException;
 import java.io.IOException;
 
 /**
- * This class provides business logic for "ContractPrepareAdd" command.
- * It forwards the request to the jsp page to create new contract.
+ * Provides business logic for preparing all what is needed to adding new contract process.
+ * At the end it forwards the request to the jsp page to create new contract.
  *
  * @author Tatiana
  * @version 1.0

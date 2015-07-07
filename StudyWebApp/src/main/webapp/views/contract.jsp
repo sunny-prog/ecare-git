@@ -22,7 +22,7 @@
     <div class="col-md-2">
       <ul class="nav nav-pills nav-stacked red" id="NavParent">
         <li class="">
-          <a href="<%=request.getContextPath()%>/Contract.go" onclick="MenuToggle(this)">List All</a></li>
+          <a href="<%=request.getContextPath()%>/ContractLoadList.go" onclick="MenuToggle(this)">List All</a></li>
         <li><a href="<%=request.getContextPath()%>/contractPrepareAdd.go" onclick="MenuToggle(this)">Add new</a></li>
       </ul>
     </div>

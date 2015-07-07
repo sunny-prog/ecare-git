@@ -4,7 +4,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 
 /**
- * This class provides business logic for "ContractDelete" command.
+ * Provides business logic for contract deleting.
  * It deletes command by it's id.
  *
  * @author Tatiana

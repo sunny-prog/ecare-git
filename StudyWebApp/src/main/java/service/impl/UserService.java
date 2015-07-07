@@ -1,73 +1,26 @@
 package service.impl;
 
-import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityNotFoundException;
-import javax.persistence.Query;
-
-import service.IUserService;
 import entity.User;
+import service.IUserService;
 
+import javax.persistence.EntityManagerFactory;
+/**
+ * Provides the local service for creating, reading, updating, deleting (CRUD) users.
+ *
+ * @author Tatiana
+ * @version 1.0
+ */
 public class UserService extends AbstractCRUDService<User> implements IUserService {
-
+	/**
+	 * Entity manager factory that is initialized during application start-up {@link utils.ServiceLocatorSingleton#getInstance()}.
+	 */
 	private EntityManagerFactory emf = null;
-
-	public UserService(EntityManagerFactory emf) {
+	/**
+	 * Class constructor.
+	 * @param emf entity manager factory
+	 */
+	public UserService(final EntityManagerFactory emf) {
 		super(User.class, emf);
 		this.emf = emf;
-	}
-
-	@SuppressWarnings("unchecked")
-	public List<User> getAll() {
-		EntityManager em = emf.createEntityManager();
-		em.getTransaction().begin();
-		Query query = em.createQuery("SELECT u FROM User u");
-		List<User> users = query.getResultList();
-		em.getTransaction().commit();
-		em.close();
-		return users;
-	}
-
-	/**
-	 * Find User based on the entity Id.
-	 *
-	 * @param userId
-	 *            the user Id.
-	 * @return User.
-	 * @throws EntityNotFoundException
-	 *             when no user is found.
-	 */
-	public User getUserById(Long userId) {
-		EntityManager em = emf.createEntityManager();
-		em.getTransaction().begin();
-		User user = em.find(User.class, userId);
-		if (user == null) {
-			throw new EntityNotFoundException("Can't find User for ID "
-					+ userId);
-		}
-		em.getTransaction().commit();
-		em.close();
-		return user;
-	}
-
-	/**
-	 * Delete User by their Id.
-	 *
-	 * @param UserId
-	 *            the User Id.
-	 */
-	public void deleteUserById(Long userId) {
-		EntityManager em = emf.createEntityManager();
-		em.getTransaction().begin();
-		User user = em.find(User.class, userId);
-		if (user == null) {
-			throw new EntityNotFoundException("Can't find User for ID "
-					+ userId);
-		}
-		em.remove(user);
-		em.getTransaction().commit();
-		em.close();
 	}
 }

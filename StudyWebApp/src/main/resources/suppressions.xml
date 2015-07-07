@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE suppressions PUBLIC
+    "-//Puppy Crawl//DTD Suppressions 1.1//EN"
+    "http://www.puppycrawl.com/dtds/suppressions_1_1.dtd">
+
+<suppressions>
+    <suppress checks="AvoidInlineConditionals"
+              files="FrontServlet.java"
+              lines="92"/>
+
+              <!-- Do not want to comment stupid getter and setter methods for user entity. There are no smth special about those methods.-->
+    <suppress checks="JavadocMethod"
+              files="User.java"
+              lines="142-209, 210-214"/>
+
+ </suppressions>

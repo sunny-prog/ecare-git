@@ -1,15 +1,18 @@
 package command;
 
-import java.io.IOException;
-import java.util.List;
 import javax.servlet.ServletException;
-
-import entity.User;
-
+import java.io.IOException;
+/**
+ * Provides business logic for user deleting.
+ * It deletes user by it's id.
+ *
+ * @author Tatiana
+ * @version 1.0
+ */
 public class UserDeleteCommand extends UserCommand {
 
     @Override
-    public void execute() throws ServletException, IOException {
+    public final void execute() throws ServletException, IOException {
         Long id = Long.valueOf(getRequest().getParameter("id"));
         getUserService().delete(id);
         loadUsersList();
