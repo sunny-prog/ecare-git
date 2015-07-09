@@ -27,7 +27,7 @@
       </ul>
     </div>
     <div class="col-md-8">
-      <form class="form-horizontal" id="AddUpdateForm" role="form" method="POST"
+      <form class="form-horizontal" id="ShiftDownForm" role="form" method="POST"
             action='<%= request.getContextPath() %>/ContractAddUpdate.go' name="frmAddUpdateContract">
         <% String action = request.getParameter("action");
           System.out.println(action);

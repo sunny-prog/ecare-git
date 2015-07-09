@@ -28,7 +28,11 @@ table {
     margin-bottom: 80px;
 }
 
-#AddUpdateForm {
+#ShiftDownForm {
     margin-top: 18px;
+}
+
+#ShiftDownLoginForm {
+    margin-top: 68px;
 }
 

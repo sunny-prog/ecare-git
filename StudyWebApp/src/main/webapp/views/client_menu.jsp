@@ -15,12 +15,12 @@
     <ul class="nav nav-pills pull-left">
         <li class=""><a href="<%=request.getContextPath()%>/TariffLoadList.go">Tariffs</a></li>
         <li><a href="<%=request.getContextPath()%>/OptionLoadList.go">Options</a></li>
-        <li><a href="<%=request.getContextPath()%>/ContractLoadList.go">Contracts</a></li>
-        <li><a href="<%=request.getContextPath()%>/UserLoadList.go">Clients</a></li>
+        <li><a href="<%=request.getContextPath()%>/ContractLoadList.go">Contract</a></li>
+        <li><a href="<%=request.getContextPath()%>/UserLoadList.go">Profile</a></li>
     </ul>
     <ul class="nav nav-pills pull-right">
         <li><a href="#">Search</a></li>
-        <li><a href="<%=request.getContextPath()%>/views/salesman_logout.jsp">Log out</a></li>
+        <li><a href="#">Sign out</a></li>
     </ul>
 
 </div>

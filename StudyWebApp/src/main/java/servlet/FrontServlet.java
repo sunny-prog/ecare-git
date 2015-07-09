@@ -14,7 +14,7 @@ import command.FrontCommand;
 import command.UnknownCommand;
 
 /**
- * Provides a centralized entry point for handling requests. Parses incoming command in URL.
+ * Provides a centralized entry point for handling requests with commands. Parses incoming command in URL.
  * Instantiates needed command entity, run it's <code>init()</code> and <code>execute()</code> methods.
  *
  * @author Tatiana
