@@ -39,7 +39,7 @@
         </div>
         <div class="col-md-7">
             <form class="form-horizontal" id="ShiftDownLoginForm" role="form" method="POST"
-                  action="<%= request.getContextPath() %>/LoginServlet">
+                  action="<%=request.getContextPath()%>/UserLogin.go">
 
                 <div class="col-sm-offset-2" style="color:red"><h5>${ErrorMessage}</h5></div>
                 <div class="form-group">

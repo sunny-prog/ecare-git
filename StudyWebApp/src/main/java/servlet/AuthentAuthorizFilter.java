@@ -1,8 +1,5 @@
 package servlet;
 
-import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -13,9 +10,11 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.util.ArrayList;
 
 /**
- * Validates session to all the resources except LoginServlet and index.jsp, because it will not have a session.
+ * Validates session to all the resources except UserLoginCommand and index.jsp, because it will not have a session.
  *
  * @author Tatiana
  * @version 1.0
@@ -47,7 +46,7 @@ public class AuthentAuthorizFilter implements Filter {
         urlList.add("/StudyWebApp/");
         urlList.add("/login.jsp");
         urlList.add("/index.jsp");
-        urlList.add("/LoginServlet");
+        urlList.add("/UserLogin.go");
         urlList.add(".js");
         urlList.add(".css");
         urlList.add(".png");
@@ -84,18 +83,24 @@ public class AuthentAuthorizFilter implements Filter {
             }
         }
 
+        // Will not create new session, if it does not exist, as "false" parameter is used
+        HttpSession session = request.getSession(false);
+
+
         if (!allowedRequest) {
-            // Will not create new session, if it does not exist, as "false" parameter is used
-            HttpSession session = request.getSession(false);
             if (session == null || session.getAttribute("user") == null) {
 
-                request.setAttribute("ErrorMessage", "Unauthorized access request");
+                request.setAttribute("ErrorMessage", "Unauthenticated access request");
                 // Forward the control to login.jsp if authentication fails
                 request.getRequestDispatcher("/login.jsp").forward(request,
                         response);
                 return; //break filter chain, requested JSP/servlet will not be executed
             }
         }
+
+        //User currentUser = (User) session.getAttribute("user");
+        // request.setAttribute("ErrorMessage", "Unauthorized access request");
+
         chain.doFilter(request, response);
     }
 

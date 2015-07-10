@@ -20,7 +20,7 @@
     </ul>
     <ul class="nav nav-pills pull-right">
         <li><a href="#">Search</a></li>
-        <li><a href="<%=request.getContextPath()%>/views/salesman_logout.jsp">Log out</a></li>
+        <li><a href="<%=request.getContextPath()%>/UserLogout.go">Log out</a></li>
     </ul>
 
 </div>
