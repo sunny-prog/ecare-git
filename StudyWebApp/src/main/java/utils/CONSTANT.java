@@ -68,4 +68,32 @@ public final class CONSTANT {
      * Option activation cost maximum value.
      */
     public static final int CONTRACT_NUMBER_MAX_LENGTH = 10;
+
+    /**
+     * Stores path to the resources folder. This folder contains important files,
+     * needed during development process(eCare_checks_SunBased.xml, for example).
+     */
+    public static final String RESOURCES_DIRECTORY_PATH =
+            "c:\\Users\\Tatiana\\Documents\\projects\\IdeaProjects\\ecare-git\\StudyWebApp\\src\\main\\resources\\";
+    /**
+     * Stores the name of the role, if user of the application plays role of salesman.
+     * Salesman is a man who can run new contracts, create new users with client role.
+     * Process options rules.
+     */
+    public static final String SALESMAN_ROLE_NAME = "SALESMAN";
+    /**
+     * Stores the name of the role, if user of the application plays role of client.
+     * Client is a person who had one or more contracts in eCare shop.
+     */
+    public static final String CLIENT_ROLE_NAME = "CLIENT";
+
+    /**
+     * Stores path to the client welcome page.
+     */
+    public static final String CLIENT_WELCOME_PAGE = "/views/restricted/client/client.jsp";
+
+    /**
+     * Stores path to the salesman welcome page.
+     */
+    public static final String SALESMAN_WELCOME_PAGE = "/views/restricted/salesman/salesman.jsp";
 }

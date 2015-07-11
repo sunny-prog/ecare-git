@@ -20,7 +20,7 @@
     </ul>
     <ul class="nav nav-pills pull-right">
         <li><a href="#">Search</a></li>
-        <li><a href="#">Sign out</a></li>
+        <li><a href="#">Log out</a></li>
     </ul>
 
 </div>

@@ -12,10 +12,10 @@
   <title>eCare - Enjoy your live!</title>
 </head>
 <body>
-<jsp:include page="header.jsp"  flush="true">
+<jsp:include page="../../header.jsp"  flush="true">
   <jsp:param name="subTitle" value="Feel free to contact us!"/>
 </jsp:include>
 <jsp:include page="client_menu.jsp"  flush="true"/>
-<jsp:include page="footer.jsp" flush="true"/>
+<jsp:include page="../../footer.jsp" flush="true"/>
 </body>
 </html>

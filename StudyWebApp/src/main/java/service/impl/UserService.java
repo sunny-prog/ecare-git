@@ -2,7 +2,7 @@ package service.impl;
 
 import entity.User;
 import service.IUserService;
-import utils.eCareAppException;
+import utils.ECareAppException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -36,8 +36,9 @@ public class UserService extends AbstractCRUDService<User> implements IUserServi
      *
      * @param email stores email of the user
      * @return the user
+     * @throws ECareAppException if no result is found in DB
      */
-    public final User getUserByEmail(final String email) throws eCareAppException {
+    public final User getUserByEmail(final String email) throws ECareAppException {
         EntityManager em = emf.createEntityManager();
 
         Query query = em.createQuery("Select u FROM User u WHERE u.email = :email");
@@ -46,7 +47,7 @@ public class UserService extends AbstractCRUDService<User> implements IUserServi
         try {
             result = (User) query.getSingleResult();
         } catch (NoResultException ex) {
-            throw new eCareAppException(ex.getMessage(),ex.getStackTrace());
+            throw new ECareAppException(ex.getMessage(), ex.getStackTrace());
         }
 
         em.close();

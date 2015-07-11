@@ -1,7 +1,7 @@
 package service;
 
 import entity.User;
-import utils.eCareAppException;
+import utils.ECareAppException;
 
 /**
  * Provides the interface for the User service. Extends all CRUD operations from the generic BaseService interface.
@@ -15,6 +15,7 @@ public interface IUserService extends BaseService<User> {
      *
      * @param email as criteria to search among users
      * @return the user
+     * @throws ECareAppException if errors during processing is detected
      */
-    User getUserByEmail(final String email) throws eCareAppException;
+    User getUserByEmail(final String email) throws ECareAppException;
 }

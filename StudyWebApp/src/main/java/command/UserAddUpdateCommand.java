@@ -2,6 +2,7 @@ package command;
 
 
 import entity.User;
+import utils.CONSTANT;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
@@ -44,7 +45,7 @@ public class UserAddUpdateCommand extends UserCommand {
         //Role is hardcoded, as on this application stage (version 1.0) only salesman can create new users with role "client"
         //In future when adminka will be implemented, it will be possible to create
         //users with both roles "salesman" and "client" by admin user, which is the only one per whole application.
-        user.setRole("client");
+        user.setRole(CONSTANT.CLIENT_ROLE_NAME);
 
         if (getRequest().getParameter("id").isEmpty()) {
             getUserService().add(user);

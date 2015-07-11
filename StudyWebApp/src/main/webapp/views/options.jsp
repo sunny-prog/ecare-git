@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html;" trimDirectiveWhitespaces="false" errorPage="error.jsp" %>
+<%@ page language="java" contentType="text/html;" trimDirectiveWhitespaces="false" errorPage="../error.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
@@ -9,7 +9,7 @@
     <jsp:include page="header.jsp" flush="true">
         <jsp:param name="subTitle" value="We care about your connection!"/>
     </jsp:include>
-    <jsp:include page="salesman_menu.jsp" flush="true"/>
+    <jsp:include page="restricted/salesman/salesman_menu.jsp" flush="true"/>
     <div class="container">
         <div class="row">
             <div class="col-md-2">

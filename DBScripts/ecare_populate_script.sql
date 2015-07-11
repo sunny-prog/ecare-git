@@ -85,10 +85,10 @@ create table users (
   )ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
  
 LOCK TABLES `users` WRITE;
-insert into users values (1001, 'Ivan', 'Ivanov', '1949-12-31', '4009564321', 'Sankt-Petersburg, Schastlivaya st. 34-2-123','Ivan.Ivanov@mail.ru', 'Qwerty', 'client');
-insert into users values (1002, 'Anna', 'Urix', '1999-02-01',  '4008964321', 'Voronezh, Leninsky pr. 23-5','Anna.Urix@yandex.ru', '12345', 'salesman');
-insert into users values (1003, 'Petya', 'Gurevich', '1976-10-30',  '4009597221', 'Moskow, Nevinnaya st. 23-4-678', 'Petya.Gurevich@gmail.com', 'root123', 'client');
-insert into users values (1004, 'Angelina', 'Pipka', '1980-07-11',  '5609581321', 'SPb, Schevcova street 39','Angela@inbox.ru', 'stud12345', 'admin');
+insert into users values (1001, 'Ivan', 'Ivanov', '1949-12-31', '4009564321', 'Sankt-Petersburg, Schastlivaya st. 34-2-123','Ivan.Ivanov@mail.ru', 'Qwerty', 'SALESMAN');
+insert into users values (1002, 'Anna', 'Urix', '1999-02-01',  '4008964321', 'Voronezh, Leninsky pr. 23-5','Anna.Urix@yandex.ru', '123', 'SALESMAN');
+insert into users values (1003, 'Petya', 'Gurevich', '1976-10-30',  '4009597221', 'Moskow, Nevinnaya st. 23-4-678', 'Petya.Gurevich@gmail.com', 'root123', 'CLIENT');
+insert into users values (1004, 'Angelina', 'Pipka', '1980-07-11',  '5609581321', 'SPb, Schevcova street 39','Angela@inbox.ru', 'stud12345', 'ADMIN');
 
 UNLOCK TABLES;
  

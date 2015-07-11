@@ -73,6 +73,11 @@ public final class ServiceLocatorSingleton {
     private ValidatorFactory vf = null;
 
     /**
+     * Stores authorization manager.
+     */
+    private IAuthorizationManager authorizationManager = null;
+
+    /**
      * Constructor of this class.
      */
     private ServiceLocatorSingleton() {
@@ -88,6 +93,8 @@ public final class ServiceLocatorSingleton {
         loadService(IContractService.class, contractService);
         vf = Validation.buildDefaultValidatorFactory();
         loadService(ValidatorFactory.class, vf);
+        authorizationManager = new AuthorizationManagerImpl();
+        loadService(IAuthorizationManager.class, authorizationManager);
     }
 
     /**
@@ -112,12 +119,11 @@ public final class ServiceLocatorSingleton {
 
     /**
      * Gets instance of service locator singleton. In this application called only
-     * ones {@link servlet.FrontServletContextListener#contextInitialized(ServletContextEvent)}
+     * ones {@link servlet.FrontServletContextListener#contextInitialized(ServletContextEvent)}}
      *
      * @return service locator singleton object
      */
     public static ServiceLocatorSingleton getInstance() {
         return SERVICE_LOCATOR;
     }
-
 }

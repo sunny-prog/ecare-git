@@ -1,5 +1,9 @@
 package servlet;
 
+import entity.User;
+import utils.IAuthorizationManager;
+import utils.ServiceLocatorSingleton;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -86,7 +90,6 @@ public class AuthentAuthorizFilter implements Filter {
         // Will not create new session, if it does not exist, as "false" parameter is used
         HttpSession session = request.getSession(false);
 
-
         if (!allowedRequest) {
             if (session == null || session.getAttribute("user") == null) {
 
@@ -96,10 +99,31 @@ public class AuthentAuthorizFilter implements Filter {
                         response);
                 return; //break filter chain, requested JSP/servlet will not be executed
             }
-        }
 
-        //User currentUser = (User) session.getAttribute("user");
-        // request.setAttribute("ErrorMessage", "Unauthorized access request");
+            //authorization check (check for corresponding rights)
+            User currentUser = (User) session.getAttribute("user");
+
+            //Get relevant URI.
+            String uri = ((HttpServletRequest) request).getRequestURI();
+
+            //Obtain AuthorizationManager singleton from ServiceLocatorSingleton
+            IAuthorizationManager authMgr =
+                    (IAuthorizationManager) ServiceLocatorSingleton.getInstance().getService(IAuthorizationManager.class);
+
+            //Invoke AuthorizationManager method to see if user can access resource.
+            boolean authorized = authMgr.isUserAuthorized(currentUser, uri);
+            if (!authorized) {
+
+                request.setAttribute("ErrorMessage", "User is not authorized to access this area!");
+                request.setAttribute("HttpStatus", "401");
+
+                // Forward the control to error.jsp if authentication fails
+                request.getRequestDispatcher("/error.jsp").forward(request,
+                        response);
+                return; //break filter chain, requested JSP/servlet will not be executed
+
+            }
+        }
 
         chain.doFilter(request, response);
     }

@@ -1,7 +1,8 @@
 package command;
 
 import entity.User;
-import utils.eCareAppException;
+import utils.CONSTANT;
+import utils.ECareAppException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
@@ -23,7 +24,7 @@ public class UserLoginCommand extends UserCommand {
 
         try {
             user = validateLogin("login", "password");
-        } catch (eCareAppException ex) {
+        } catch (ECareAppException ex) {
             getRequest().setAttribute("ErrorMessage", "          " + ex.getMessage());
             target = "/login.jsp";
             forward(target);
@@ -42,13 +43,11 @@ public class UserLoginCommand extends UserCommand {
         //response.addCookie(userName);
 
         // There are two roles in system "salesman" and "client"
-        if ("salesman".equals(user.getRole())) {
-            target = "/views/salesman.jsp";
+        if (CONSTANT.SALESMAN_ROLE_NAME.equals(user.getRole())) {
+            target = CONSTANT.SALESMAN_WELCOME_PAGE;
         } else {
-            target = "/views/client.jsp";
+            target = CONSTANT.CLIENT_WELCOME_PAGE;
         }
-
-
         forward(target);
     }
 
@@ -60,13 +59,15 @@ public class UserLoginCommand extends UserCommand {
      * @param pLogin    given at the jsp
      * @param pPassword given at the jsp
      * @return a user if one was found and validated
+     * @throws ECareAppException if one or two field ae empty, if user is not found
+     *                           in DB and if password is differ from that is stored in DB
      */
-    private User validateLogin(final String pLogin, final String pPassword) throws eCareAppException {
+    private User validateLogin(final String pLogin, final String pPassword) throws ECareAppException {
 
         Boolean loginIsOk = isNotBlankField(pLogin);
         Boolean passwordIsOk = isNotBlankField(pPassword);
         if (!loginIsOk || !passwordIsOk) {
-            throw new eCareAppException("Empty field is detected.");
+            throw new ECareAppException("Empty field is detected.");
         }
 
         String login = getRequest().getParameter(pLogin);
@@ -76,7 +77,7 @@ public class UserLoginCommand extends UserCommand {
 
         // Check if the password is valid
         if (!user.getPassword().equals(pwd.trim())) {
-            throw new eCareAppException("Password is incorrect");
+            throw new ECareAppException("Password is incorrect");
         }
         return user;
     }
