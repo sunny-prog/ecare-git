@@ -31,8 +31,9 @@
 
     <filter-mapping>
         <filter-name>AuthentAuthorizFilter</filter-name>
-        <url-pattern>/views/restricted/*</url-pattern>
-        <!--dispatcher>REQUEST</dispatcher>
+        <url-pattern>/*</url-pattern>
+        <!--url-pattern>/views/restricted/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
         <dispatcher>INCLUDE</dispatcher>
         <dispatcher>ERROR</dispatcher-->
