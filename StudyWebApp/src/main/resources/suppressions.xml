@@ -7,7 +7,7 @@
 <suppressions>
     <suppress checks="AvoidInlineConditionals"
               files="FrontServlet.java"
-              lines="92"/>
+              lines="103"/>
 
               <!-- Do not want to comment stupid getter and setter methods for user entity. There are no smth special about those methods.-->
     <suppress checks="JavadocMethod"

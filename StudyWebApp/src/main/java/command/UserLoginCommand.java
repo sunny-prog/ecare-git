@@ -31,7 +31,6 @@ public class UserLoginCommand extends UserCommand {
             return;
         }
 
-
         //Creates session, if it does not exist
         HttpSession session = getRequest().getSession();
         session.setAttribute("user", user);

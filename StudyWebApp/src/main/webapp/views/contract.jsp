@@ -32,6 +32,7 @@
         <% String action = request.getParameter("action");
           System.out.println(action);
         %>
+        <c:set var="contractRequestScope" value="${requestScope.contract}"/>
         <div class="form-group">
 
           <label class="col-sm-2 control-label">Contract number</label>
@@ -39,7 +40,7 @@
           <div class="col-sm-6">
             <input class="form-control" id="contractNumber"
                    type="text" name="number"
-                   value="<c:out value="${contract.number}" />"/>
+                   value="<c:out value="${contractRequestScope.number}" />"/>
           </div>
         </div>
         <div class="form-group">
@@ -49,7 +50,7 @@
           <div class="col-sm-6">
             <input class="form-control" id="contractTariff"
                    type="text" name="tariffId"
-                   value="<c:out value="${contract.tariff.id}" />"/>
+                   value="<c:out value="${contractRequestScope.tariff.id}" />"/>
           </div>
         </div>
         <div class="form-group">
@@ -59,7 +60,7 @@
           <div class="col-sm-6">
             <input class="form-control" id="contractClient"
                    type="text" name="clientId"
-                   value="<c:out value="${contract.client.id}" />"/>
+                   value="<c:out value="${contractRequestScope.client.id}" />"/>
           </div>
         </div>
         <div class="form-group">
@@ -69,7 +70,7 @@
         <div class="col-sm-6">
           <input class="form-control" id="contractBlockedBySalesman"
                  type="text" name="blockedBySalesman"
-                 value="<c:out value="${contract.blockedBySalesman}" />"/>
+                 value="<c:out value="${contractRequestScope.blockedBySalesman}" />"/>
         </div>
       </div>
         <div class="form-group">
@@ -79,12 +80,12 @@
           <div class="col-sm-6">
             <input class="form-control" id="contractBlockedByClient"
                    type="text" name="blockedByClient"
-                   value="<c:out value="${contract.blockedByClient}" />"/>
+                   value="<c:out value="${contractRequestScope.blockedByClient}" />"/>
           </div>
         </div>
         <%-- if option is updated - id exists and should be sent in request--%>
         <% if (request.getParameter("id") != null) {%>
-        <input type="hidden" name="id" value="<c:out value="${contract.id}" />"/>
+        <input type="hidden" name="id" value="<c:out value="${contractRequestScope.id}" />"/>
         <%} else {%>
         <input type="hidden" name="id" value="<c:out value="" />"/>
         <%}%>

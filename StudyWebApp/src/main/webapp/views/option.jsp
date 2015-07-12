@@ -33,6 +33,7 @@
                 <% String action = request.getParameter("action");
                     //System.out.println(action);
                 %>
+                <c:set var="optionRequestScope" value="${requestScope.option}"/>
                 <div style="color:red">${ErrorMessage}</div>
                 <div class="form-group">
 
@@ -41,7 +42,7 @@
                     <div class="col-sm-6">
                         <input class="form-control" id="optionTitle"
                                type="text" name="title"
-                               value="<c:out value="${option.title}" />"/>
+                               value="<c:out value="${optionRequestScope.title}" />"/>
                         <div style="color:red">${titleErrorMessage}</div>
                     </div>
                 </div>
@@ -53,7 +54,7 @@
                         <div class="input-group">
                             <input class="form-control" id="optionPrice"
                                    type="text" name="price"
-                                   value="<c:out value="${option.price}" />"/>
+                                   value="<c:out value="${optionRequestScope.price}" />"/>
                             <span class="input-group-addon">&#8381</span>
                         </div>
                         <div style="color:red">${priceErrorMessage}</div>
@@ -66,7 +67,7 @@
                         <div class="input-group">
                             <input class="form-control" id="optionActivationCost"
                                    type="text" name="activationCost"
-                                   value="<c:out value="${option.activationCost}" />"/>
+                                   value="<c:out value="${optionRequestScope.activationCost}" />"/>
                             <span class="input-group-addon">&#8381</span>
                         </div>
                         <div style="color:red">${activationCostErrorMessage}</div>
@@ -74,7 +75,7 @@
                 </div>
                 <%-- if option is updated - id exists and should be sent in request--%>
                 <% if (request.getParameter("id") != null) {%>
-                <input type="hidden" name="id" value="<c:out value="${option.id}" />"/>
+                <input type="hidden" name="id" value="<c:out value="${optionRequestScope.id}" />"/>
                 <%} else {%>
                 <input type="hidden" name="id" value="<c:out value="" />"/>
                 <%}%>

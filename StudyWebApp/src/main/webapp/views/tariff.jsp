@@ -26,6 +26,7 @@
       </ul>
     </div>
     <div class="col-md-8">
+      <c:set var="tariffRequestScope" value="${requestScope.tariff}"/>
       <form class="form-horizontal" role="form" method="POST"
             action='<%= request.getContextPath() %>/TariffAddUpdate.go' name="frmAddUpdateTariff">
         <% String action = request.getParameter("action");
@@ -38,7 +39,7 @@
           <div class="col-sm-6">
             <input class="form-control" id="optionTitle"
                    type="text" name="title"
-                   value="<c:out value="${tariff.title}" />"/>
+                   value="<c:out value="${tariffRequestScope.title}" />"/>
           </div>
         </div>
         <div class="form-group">
@@ -48,7 +49,7 @@
             <div class="input-group">
               <input class="form-control" id="tariffPrice"
                      type="text" name="price"
-                     value="<c:out value="${tariff.price}" />"/>
+                     value="<c:out value="${tariffRequestScope.price}" />"/>
               <span class="input-group-addon">&#8381</span>
             </div>
           </div>
@@ -56,7 +57,7 @@
 
         <%-- if tariff is updated - id exists and should be sent in request--%>
         <% if (request.getParameter("id") != null) {%>
-        <input type="hidden" name="id" value="<c:out value="${tariff.id}" />"/>
+        <input type="hidden" name="id" value="<c:out value="${tariffRequestScope.id}" />"/>
         <%} else {%>
         <input type="hidden" name="id" value="<c:out value="" />"/>
         <%}%>

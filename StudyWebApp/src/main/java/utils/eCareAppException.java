@@ -14,7 +14,7 @@ public class ECareAppException extends Exception {
     /**
      * Contains stack trace of the exception.
      */
-    private StackTraceElement[] stackTrace = null;
+    private String stackTraceText = null;
 
     /**
      * Class constructor.
@@ -36,13 +36,13 @@ public class ECareAppException extends Exception {
     /**
      * One more constructor with two parameters.
      *
-     * @param message    message to store in this class property "message".
-     * @param stackTrace stores stack trace of the exception.
+     * @param message        message to store in this class property "message".
+     * @param stackTraceText stores stack trace of the exception.
      */
-    public ECareAppException(final String message, final StackTraceElement[] stackTrace) {
+    public ECareAppException(final String message, final String stackTraceText) {
         super(message);
         this.errorMessage = message;
-        setStackTrace(stackTrace);
+        setStackTraceText(stackTraceText);
     }
 
     /**
@@ -66,20 +66,19 @@ public class ECareAppException extends Exception {
     /**
      * Gets the stack trace.
      *
-     * @return {@link StackTraceElement[]}
+     * @return {@link String}
      */
-    @Override
-    public final StackTraceElement[] getStackTrace() {
-        return stackTrace;
+    public final String getStackTraceText() {
+        return stackTraceText;
     }
 
     /**
      * Sets the stack trace.
      *
-     * @param stackTrace allowed object is {@link StackTraceElement[]}
+     * @param stackTrace allowed object is {@link String}
      */
-    @Override
-    public final void setStackTrace(final StackTraceElement[] stackTrace) {
-        this.stackTrace = stackTrace;
+
+    public final void setStackTraceText(final String stackTrace) {
+        this.stackTraceText = stackTraceText;
     }
 }

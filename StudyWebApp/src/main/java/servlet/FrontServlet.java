@@ -1,17 +1,17 @@
 package servlet;
 
-import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import command.FrontCommand;
+import org.apache.commons.lang3.exception.ExceptionUtils;
+import utils.ECareAppException;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import command.FrontCommand;
-import command.UnknownCommand;
+import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Provides a centralized entry point for handling requests with commands. Parses incoming command in URL.
@@ -56,9 +56,17 @@ public class FrontServlet extends HttpServlet {
      */
     public final void doPost(final HttpServletRequest request, final HttpServletResponse response)
             throws IOException, ServletException {
-        FrontCommand command = getCommand(request);
-        command.init(getServletContext(), request, response);
-        command.execute();
+        try {
+            FrontCommand command = getCommand(request);
+            command.init(getServletContext(), request, response);
+            command.execute();
+        } catch (Throwable e) {
+            request.setAttribute("ErrorMessage", e.getMessage() + ". Contact Administrator.");
+            request.setAttribute("StackTrace", ExceptionUtils.getStackTrace(e));
+            request.setAttribute("HttpStatus", "500");
+
+            request.getRequestDispatcher("/error.jsp").forward(request, response);
+        }
     }
 
     /**
@@ -66,24 +74,27 @@ public class FrontServlet extends HttpServlet {
      *
      * @param request an HttpServletRequest object that contains the request the client has made of the servlet
      * @return front command that is detected(parsed from URL)
+     * @throws ECareAppException when error in instantiation occurs.
      */
-    private FrontCommand getCommand(final HttpServletRequest request) {
+    private FrontCommand getCommand(final HttpServletRequest request) throws ECareAppException {
         try {
             return (FrontCommand) getCommandClass(request).newInstance();
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new ECareAppException("Error during command instantiation process! Contact Administrator.",
+                    ExceptionUtils.getStackTrace(e));
         }
     }
 
     /**
-     * Gets command, that is come in the request from the client side.
+     * Gets command, that come in the request from the client side.
      * Special pattern is used: /StudyWebApp/(\w+).go.*
      *
      * @param request an HttpServletRequest object that contains the request the client has made of the servlet
      * @return name of the class, that represent the command to be executed.
+     * @throws ECareAppException when attempt to process unknown command is detected.
      */
     @SuppressWarnings("rawtypes")
-    private Class getCommandClass(final HttpServletRequest request) {
+    private Class getCommandClass(final HttpServletRequest request) throws ECareAppException {
 
         Class result;
         Pattern pattern = Pattern.compile("/StudyWebApp/(\\w+).go.*");
@@ -94,7 +105,7 @@ public class FrontServlet extends HttpServlet {
         try {
             result = Class.forName(commandClassName);
         } catch (ClassNotFoundException e) {
-            result = UnknownCommand.class;
+            throw new ECareAppException("Attempt to process unknown command.", ExceptionUtils.getStackTrace(e));
         }
 
         return result;

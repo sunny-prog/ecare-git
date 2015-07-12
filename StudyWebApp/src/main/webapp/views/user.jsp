@@ -32,6 +32,7 @@
         <% String action = request.getParameter("action");
           System.out.println(action);
         %>
+        <c:set var="userRequestScope" value="${requestScope.user}"/>
         <div class="form-group">
 
           <label class="col-sm-2 control-label">Name</label>
@@ -39,7 +40,7 @@
           <div class="col-sm-6">
             <input class="form-control" id="userName"
                    type="text" name="name"
-                   value="<c:out value="${user.name}" />"/>
+                   value="<c:out value="${userRequestScope.name}" />"/>
           </div>
         </div>
         <div class="form-group">
@@ -49,7 +50,7 @@
           <div class="col-sm-6">
             <input class="form-control" id="userSurname"
                    type="text" name="surname"
-                   value="<c:out value="${user.surname}" />"/>
+                   value="<c:out value="${userRequestScope.surname}" />"/>
           </div>
         </div>
         <div class="form-group">
@@ -59,7 +60,7 @@
           <div class="col-sm-6">
             <input class="form-control" id="userBirthDay"
                    type="text" name="birthDay"
-                   value="<c:out value="${user.birthDay}" />"/>
+                   value="<c:out value="${userRequestScope.birthDay}" />"/>
           </div>
         </div>
         <div class="form-group">
@@ -69,7 +70,7 @@
           <div class="col-sm-6">
             <input class="form-control" id="userPassport"
                    type="text" name="passport"
-                   value="<c:out value="${user.passport}" />"/>
+                   value="<c:out value="${userRequestScope.passport}" />"/>
           </div>
         </div>
         <div class="form-group">
@@ -79,7 +80,7 @@
           <div class="col-sm-6">
             <input class="form-control" id="userAddress"
                    type="text" name="address"
-                   value="<c:out value="${user.address}" />"/>
+                   value="<c:out value="${userRequestScope.address}" />"/>
           </div>
         </div>
         <div class="form-group">
@@ -89,7 +90,7 @@
           <div class="col-sm-6">
             <input class="form-control" id="userEmail"
                    type="text" name="email"
-                   value="<c:out value="${user.email}" />"/>
+                   value="<c:out value="${userRequestScope.email}" />"/>
           </div>
         </div>
         <div class="form-group">
@@ -99,12 +100,12 @@
           <div class="col-sm-6">
             <input class="form-control" id="userPassword"
                    type="text" name="password"
-                   value="<c:out value="${user.password}" />"/>
+                   value="<c:out value="${userRequestScope.password}" />"/>
           </div>
         </div>
         <%-- if option is updated - id exists and should be sent in request--%>
         <% if (request.getParameter("id") != null) {%>
-        <input type="hidden" name="id" value="<c:out value="${user.id}" />"/>
+        <input type="hidden" name="id" value="<c:out value="${userRequestScope.id}" />"/>
         <%} else {%>
         <input type="hidden" name="id" value="<c:out value="" />"/>
         <%}%>
