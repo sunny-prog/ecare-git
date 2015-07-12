@@ -18,25 +18,25 @@ insert into options values (1001, '50Mb', 50, 0);
 insert into options values (1002, '100Mb', 100, 0);
 insert into options values (1003, '500Mb', 450, 0);
 insert into options values (1004, '1024Mb', 700, 0);
-insert into options values (1005, '50SMS', 50, 20);
+-- insert into options values (1005, '50SMS', 50, 20);
 insert into options values (1006, '100SMS', 80, 0);
-insert into options values (1007, '200SMS', 130, 0);
+-- insert into options values (1007, '200SMS', 130, 0);
 insert into options values (1008, 'Free Roaming', 500, 100);
-insert into options values (1009, 'All World', 350, 60);
+-- insert into options values (1009, 'All World', 350, 60);
 insert into options values (1010, 'All Russia', 350, 60);
-insert into options values (1011, 'All Europe', 350, 60);
+-- insert into options values (1011, 'All Europe', 350, 60);
 insert into options values (1012, '50MMS', 100, 50);
-insert into options values (1013, '100MMS', 150, 50);
-insert into options values (1014, 'White Nights', 150, 50);
-insert into options values (1015, 'GreenGrass.ru', 150, 50);
-insert into options values (1016, 'Finland', 150, 50);
-insert into options values (1017, 'Season ticket', 150, 50);
-insert into options values (1018, 'Full unlim', 150, 50);
-insert into options values (1019, 'Internet per nights', 150, 50);
-insert into options values (1020, 'Express calls', 150, 50);
-insert into options values (1021, 'GPRS active', 150, 50);
-insert into options values (1022, 'Internet active', 150, 50);
-insert into options values (1023, 'MMS Active', 150, 50);
+-- insert into options values (1013, '100MMS', 150, 50);
+ insert into options values (1014, 'White Nights', 150, 50);
+-- insert into options values (1015, 'GreenGrass.ru', 150, 50);
+-- insert into options values (1016, 'Finland', 150, 50);
+ insert into options values (1017, 'Season ticket', 150, 50);
+-- insert into options values (1018, 'Full unlim', 150, 50);
+-- insert into options values (1019, 'Internet per nights', 150, 50);
+-- insert into options values (1020, 'Express calls', 150, 50);
+-- insert into options values (1021, 'GPRS active', 150, 50);
+-- insert into options values (1022, 'Internet active', 150, 50);
+-- insert into options values (1023, 'MMS Active', 150, 50);
 UNLOCK TABLES;
 
 --
@@ -96,24 +96,28 @@ UNLOCK TABLES;
 -- Table `tariffs_options`
 --
 
--- SET FOREIGN_KEY_CHECKS=0;
--- drop table if exists tariffs_options;
--- SET FOREIGN_KEY_CHECKS=1;
+SET FOREIGN_KEY_CHECKS=0;
+drop table if exists tariffs_options;
+SET FOREIGN_KEY_CHECKS=1;
 
--- create table tariffs_options (
-  -- tariff_id  bigint NOT NULL,
-  -- option_id  bigint NOT NULL,
-  -- primary key (tariff_id, option_id),
-  -- KEY `FK_tariffs_options` (`tariff_id`),
-  -- KEY `FK_options_tariffs` (`option_id`),
-  -- CONSTRAINT `FK_tariffs_options` FOREIGN KEY (`tariff_id`) REFERENCES `tariffs` (`id`)  ON DELETE CASCADE ON UPDATE RESTRICT,
-  -- CONSTRAINT `FK_options_tariffs` FOREIGN KEY (`option_id`) REFERENCES `options` (`id`)  ON DELETE CASCADE ON UPDATE RESTRICT
-  -- )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+create table tariffs_options (
+tariff_id  bigint NOT NULL,
+option_id  bigint NOT NULL,
+primary key (tariff_id, option_id),
+KEY `FK_tariffs_options` (`tariff_id`),
+KEY `FK_options_tariffs` (`option_id`),
+CONSTRAINT `FK_tariffs_options` FOREIGN KEY (`tariff_id`) REFERENCES `tariffs` (`id`)  ON DELETE CASCADE ON UPDATE RESTRICT,
+CONSTRAINT `FK_options_tariffs` FOREIGN KEY (`option_id`) REFERENCES `options` (`id`)  ON DELETE CASCADE ON UPDATE RESTRICT
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
  
--- LOCK TABLES `tariffs_options` WRITE;
--- insert into tariffs_options values (1001, 1008);
--- insert into tariffs_options values (1001, 1014);
--- UNLOCK TABLES;
+LOCK TABLES `tariffs_options` WRITE;
+insert into tariffs_options values (1001, 1008);
+insert into tariffs_options values (1001, 1014);
+insert into tariffs_options values (1001, 1004);
+insert into tariffs_options values (1002, 1014);
+insert into tariffs_options values (1002, 1008);
+insert into tariffs_options values (1002, 1017);
+UNLOCK TABLES;
 
 --
 -- Table `contracts`

@@ -1,7 +1,10 @@
 package command;
 
-import java.io.IOException;
+import entity.Option;
+
 import javax.servlet.ServletException;
+import java.io.IOException;
+import java.util.List;
 
 /**
  * Provides business logic for preparing all what is needed to adding new tariff process.
@@ -14,6 +17,10 @@ public class TariffPrepareAddCommand extends TariffCommand {
 
     @Override
     public final void execute() throws ServletException, IOException {
+
+        List<Option> existingOptionsList = getOptionService().getAll();
+        getRequest().setAttribute("existingOptionsList", existingOptionsList);
+
         forward("/views/tariff.jsp");
     }
 }

@@ -47,7 +47,7 @@ public class UserService extends AbstractCRUDService<User> implements IUserServi
         try {
             result = (User) query.getSingleResult();
         } catch (NoResultException ex) {
-            throw new ECareAppException("There is no user with email \"" + email + "\" in Data Base.");
+            throw new ECareAppException("There is no user with email \"" + email + "\" in Data Base");
         }
 
         em.close();

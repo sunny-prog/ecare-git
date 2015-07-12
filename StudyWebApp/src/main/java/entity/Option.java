@@ -56,6 +56,10 @@ public class Option {
     @Max(CONSTANT.OPTION_ACTIVATION_COST_MAX_VALUE)
     private Integer activationCost;
 
+
+
+
+
     /**
      * Gets the price of the option.
      *

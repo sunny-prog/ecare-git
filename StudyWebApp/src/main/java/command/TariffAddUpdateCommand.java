@@ -1,9 +1,13 @@
 package command;
 
+import entity.Option;
 import entity.Tariff;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Provides business logic for "TariffAddUpdate" command.
  * It validates user's input and distinguishes between Add and Update
@@ -21,6 +25,14 @@ public class TariffAddUpdateCommand extends TariffCommand {
         Tariff tariff = new Tariff();
         tariff.setPrice(Integer.valueOf(getRequest().getParameter("price")));
         tariff.setTitle(getRequest().getParameter("title"));
+        List<Option> chosenOptions = new ArrayList<Option>();
+        String[] chosenOptionIds = getRequest().getParameterValues("chosenOptionIds");
+        if (chosenOptionIds != null) {
+            for (int i = 0; i < chosenOptionIds.length; i++) {
+                chosenOptions.add(getOptionService().get(Long.valueOf(chosenOptionIds[i])));
+            }
+        }
+        tariff.setOptions(chosenOptions);
         if (getRequest().getParameter("id").isEmpty()) {
             getTariffService().add(tariff);
         } else {

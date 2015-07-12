@@ -5,9 +5,11 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 
+import service.IOptionService;
 import service.ITariffService;
 import utils.ServiceLocatorSingleton;
 import entity.Tariff;
+
 /**
  * Makes loading all necessarily services for normal tariff functioning. It establishes services for
  * ITariffService interface.
@@ -19,7 +21,14 @@ public abstract class TariffCommand extends FrontCommand {
     /**
      * Service that provides working with tariff functionality.
      */
+    private IOptionService optionService = null;
+
+
+    /**
+     * Service that provides working with tariff functionality.
+     */
     private ITariffService tariffService = null;
+
     /**
      * Class constructor.
      */
@@ -27,7 +36,10 @@ public abstract class TariffCommand extends FrontCommand {
         super();
         setTariffService((ITariffService) ServiceLocatorSingleton.getInstance()
                 .getService(ITariffService.class));
+        setOptionService((IOptionService) ServiceLocatorSingleton.getInstance()
+                .getService(IOptionService.class));
     }
+
     /**
      * Loads list of tariffs currently stored in the DB in corresponding table.
      *
@@ -39,6 +51,7 @@ public abstract class TariffCommand extends FrontCommand {
         getRequest().setAttribute("list", list);
         forward("/views/tariffs.jsp");
     }
+
     /**
      * Gets service to work with tariff that was registered in constructor by ITariffService interface.
      *
@@ -47,6 +60,7 @@ public abstract class TariffCommand extends FrontCommand {
     public final ITariffService getTariffService() {
         return tariffService;
     }
+
     /**
      * Sets service to work with tariff.
      *
@@ -54,5 +68,23 @@ public abstract class TariffCommand extends FrontCommand {
      */
     public final void setTariffService(final ITariffService tariffService) {
         this.tariffService = tariffService;
+    }
+
+    /**
+     * Gets service to work with option that was registered in constructor by IOptionService interface.
+     *
+     * @return this Tariffs's service.
+     */
+    public final IOptionService getOptionService() {
+        return optionService;
+    }
+
+    /**
+     * Sets service to work with option.
+     *
+     * @param optionService is an option service to be set. It should implement IOptionService interface.
+     */
+    public final void setOptionService(final IOptionService optionService) {
+        this.optionService = optionService;
     }
 }
