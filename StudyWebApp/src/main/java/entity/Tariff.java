@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.FetchType;
 import javax.validation.constraints.Size;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -50,8 +51,20 @@ public class Tariff {
 
     /**
      * Stores options available for this tariff. Client can choose one of these options to connect to.
+     * If make this property to have lazy initialization = true, then Hibernate exception will be thrown,
+     * because session is being closed before we access Tariff's member variables. When the following line is executed:
+     * Tariff tariff= (Tariff) super.find(Tariff.class, id)
+     * Hibernate opens a sessions, retrieves what we're looking for, then closes then session.
+     * Any fields that have lazy=true are not retrieved at this time; instead, these fields are populated by proxies.
+     * When we try to retrieve the actual value of proxied object, it will attempt to go back to the database
+     * using the active session to retrieve the data. If no session can be found, we get the exception.
+     * Setting lazy=true has advantages because it prevents the entire object graph from being loaded immediately;
+     * nested objects are left alone until we specifically ask for them.
      */
-    @ManyToMany//TO REMEMBER what cascadeType by default? Is needed here (CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
+    //(fetch = FetchType.LAZY, optional = false)
+//TO REMEMBER what cascadeType by default? Is needed here (CascadeType.ALL)
+    // In DB population script "ON DELETE CASCADE ON UPDATE RESTRICT"
     @JoinTable(
             name = "tariffs_options",
             joinColumns = {@JoinColumn(name = "tariff_id", referencedColumnName = "id")},

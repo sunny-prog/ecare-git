@@ -31,12 +31,64 @@ insert into options values (1012, '50MMS', 100, 50);
 -- insert into options values (1015, 'GreenGrass.ru', 150, 50);
 -- insert into options values (1016, 'Finland', 150, 50);
  insert into options values (1017, 'Season ticket', 150, 50);
--- insert into options values (1018, 'Full unlim', 150, 50);
--- insert into options values (1019, 'Internet per nights', 150, 50);
--- insert into options values (1020, 'Express calls', 150, 50);
--- insert into options values (1021, 'GPRS active', 150, 50);
--- insert into options values (1022, 'Internet active', 150, 50);
--- insert into options values (1023, 'MMS Active', 150, 50);
+insert into options values (1018, 'Full unlim', 150, 50);
+insert into options values (1019, 'Internet per nights', 150, 50);
+insert into options values (1020, 'Express calls', 150, 50);
+insert into options values (1021, 'GPRS active', 150, 50);
+insert into options values (1022, 'Internet active', 150, 50);
+insert into options values (1023, 'MMS Active', 150, 50);
+UNLOCK TABLES;
+
+--
+-- Table `required_options`
+--
+SET FOREIGN_KEY_CHECKS=0;
+drop table if exists required_options;
+SET FOREIGN_KEY_CHECKS=1;
+
+create table required_options (
+source_opt_id  bigint NOT NULL,
+required_opt_id  bigint NOT NULL,
+primary key (source_opt_id, required_opt_id),
+KEY `FK_source_opt_required_opt` (`source_opt_id`),
+KEY `FK_required_opt_source_opt` (`required_opt_id`),
+CONSTRAINT `FK_source_opt_required_opt` FOREIGN KEY (`source_opt_id`) REFERENCES `options` (`id`)  ON DELETE CASCADE ON UPDATE RESTRICT,
+CONSTRAINT `FK_required_opt_source_opt` FOREIGN KEY (`required_opt_id`) REFERENCES `options` (`id`)  ON DELETE CASCADE ON UPDATE RESTRICT
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ 
+LOCK TABLES `required_options` WRITE;
+insert into required_options values (1001, 1003);
+insert into required_options values (1001, 1004);
+insert into required_options values (1006, 1010);
+-- insert into required_options values (1002, 1017);
+-- insert into required_options values (1017, 1004);
+-- insert into required_options values (1002, 1014);
+UNLOCK TABLES;
+
+--
+-- Table `incompatible_options`
+--
+SET FOREIGN_KEY_CHECKS=0;
+drop table if exists incompatible_options;
+SET FOREIGN_KEY_CHECKS=1;
+
+create table incompatible_options (
+source_opt_id  bigint NOT NULL,
+incompatible_opt_id  bigint NOT NULL,
+primary key (source_opt_id, incompatible_opt_id),
+KEY `FK_source_opt_incompatible_opt` (`source_opt_id`),
+KEY `FK_incompatible_opt_source_opt` (`incompatible_opt_id`),
+CONSTRAINT `FK_source_opt_incompatible_opt` FOREIGN KEY (`source_opt_id`) REFERENCES `options` (`id`)  ON DELETE CASCADE ON UPDATE RESTRICT,
+CONSTRAINT `FK_incompatible_opt_source_opt` FOREIGN KEY (`incompatible_opt_id`) REFERENCES `options` (`id`)  ON DELETE CASCADE ON UPDATE RESTRICT
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ 
+LOCK TABLES `incompatible_options` WRITE;
+insert into incompatible_options values (1001, 1010);
+insert into incompatible_options values (1001, 1012);
+insert into incompatible_options values (1006, 1012);
+-- insert into incompatible_options values (1002, 1014);
+-- insert into incompatible_options values (1017, 1003);
+-- insert into incompatible_options values (1002, 1010);
 UNLOCK TABLES;
 
 --

@@ -6,6 +6,8 @@ import javax.servlet.ServletException;
 import javax.validation.ConstraintViolationException;
 import javax.validation.ValidationException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Provide business logic for "OptionAddUpdate" command.
@@ -22,18 +24,55 @@ public class OptionAddUpdateCommand extends OptionCommand {
     @Override
     public final void execute() throws ServletException, IOException {
         Option option = new Option();
+        String action = null;
 
         try {
             //If "id" parameter in the request is not empty - we set it before hand (do not want to loose it)
             if (!getRequest().getParameter("id").isEmpty()) {
                 option.setId(Long.valueOf(getRequest().getParameter("id")));
+                getRequest().setAttribute("action", "update");
+                action = "update";
+            } else {
+                getRequest().setAttribute("action", "add");
+                action = "add";
             }
 
             // check format and validate incoming parameters
             if (Boolean.TRUE.equals(validationIsFailed(option))) {
+                List<Option> existingOptionsList = getOptionService().getAll();
+                getRequest().setAttribute("existingOptionsList", existingOptionsList);
+                if ("update".equals(action)) {
+
+                    Option optionToUpdate = getOptionService().get(Long.valueOf(getRequest().getParameter("id")));
+                    //Prepare list with options required for this option
+                    List<Option> requiredOptionsList = optionToUpdate.getRequiredOptions();
+                    getRequest().setAttribute("requiredOptionsList", requiredOptionsList);
+
+                    //Prepare list with options incompatible for this option
+                    List<Option> incompatibleOptionsList = optionToUpdate.getIncompatibleOptions();
+                    getRequest().setAttribute("incompatibleOptionsList", incompatibleOptionsList);
+                }
                 forward("/views/option.jsp");
                 return;
             }
+
+            List<Option> chosenRequiredOptions = new ArrayList<Option>();
+            String[] chosenRequiredOptionIds = getRequest().getParameterValues("chosenRequiredOptionIds");
+            if (chosenRequiredOptionIds != null) {
+                for (int i = 0; i < chosenRequiredOptionIds.length; i++) {
+                    chosenRequiredOptions.add(getOptionService().get(Long.valueOf(chosenRequiredOptionIds[i])));
+                }
+            }
+            option.setRequiredOptions(chosenRequiredOptions);
+
+            List<Option> chosenIncompatibleOptions = new ArrayList<Option>();
+            String[] chosenIncompatibleOptionIds = getRequest().getParameterValues("chosenIncompatibleOptionIds");
+            if (chosenIncompatibleOptionIds != null) {
+                for (int i = 0; i < chosenIncompatibleOptionIds.length; i++) {
+                    chosenIncompatibleOptions.add(getOptionService().get(Long.valueOf(chosenIncompatibleOptionIds[i])));
+                }
+            }
+            option.setIncompatibleOptions(chosenIncompatibleOptions);
 
             //ADDING new option in case - no id
             if (getRequest().getParameter("id").isEmpty()) {

@@ -20,7 +20,7 @@ public class TariffPrepareAddCommand extends TariffCommand {
 
         List<Option> existingOptionsList = getOptionService().getAll();
         getRequest().setAttribute("existingOptionsList", existingOptionsList);
-
+        getRequest().setAttribute("action", "add");
         forward("/views/tariff.jsp");
     }
 }

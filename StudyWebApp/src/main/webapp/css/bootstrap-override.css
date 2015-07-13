@@ -33,7 +33,10 @@ hr {
     padding-top: 7px;
 }
 
-
+body .checkbox-inline label{
+    font-size: 14px;
+    font-weight: 400;
+}
 
 .nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
     color: #fff;

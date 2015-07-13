@@ -1,17 +1,24 @@
 package entity;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import utils.CONSTANT;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 /**
  * Provides the model implementation for the Option entity. Represents a row
@@ -56,9 +63,29 @@ public class Option {
     @Max(CONSTANT.OPTION_ACTIVATION_COST_MAX_VALUE)
     private Integer activationCost;
 
+    /**
+     * Stores required options for this option. Client will be forced to choose these required options if he want to connect this option.
+     */
+    @ManyToMany(fetch = FetchType.EAGER)//TO REMEMBER what cascadeType by default? Is needed here (CascadeType.ALL)
+    @Fetch(value = FetchMode.SUBSELECT)// In DB population script "ON DELETE CASCADE ON UPDATE RESTRICT"
+    @JoinTable(
+            name = "required_options",
+            joinColumns = {@JoinColumn(name = "source_opt_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "required_opt_id", referencedColumnName = "id")})
+    private List<Option> requiredOptions;
 
-
-
+    /**
+     * Stores incompatible options for this option. Client should before hand exclude these incompatible options to connect to this option.
+     * Otherwise this option will not be connected.
+     */
+    @ManyToMany(fetch = FetchType.EAGER)//TO REMEMBER what cascadeType by default? Is needed here (CascadeType.ALL)
+    @Fetch(value = FetchMode.SUBSELECT)
+    // In DB population script "ON DELETE CASCADE ON UPDATE RESTRICT"
+    @JoinTable(
+            name = "incompatible_options",
+            joinColumns = {@JoinColumn(name = "source_opt_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "incompatible_opt_id", referencedColumnName = "id")})
+    private List<Option> incompatibleOptions;
 
     /**
      * Gets the price of the option.
@@ -131,5 +158,36 @@ public class Option {
     public final void setActivationCost(final Integer activationCost) {
         this.activationCost = activationCost;
     }
-
+    /**
+     * Gets incompatible options of the option.
+     *
+     * @return {@link List<Option>}
+     */
+    public final List<Option> getIncompatibleOptions() {
+        return incompatibleOptions;
+    }
+    /**
+     * Sets the incompatible options to the option.
+     *
+     * @param incompatibleOptions allowed object is {@link List<Option> }
+     */
+    public final void setIncompatibleOptions(final List<Option> incompatibleOptions) {
+        this.incompatibleOptions = incompatibleOptions;
+    }
+    /**
+     * Gets required options of the option.
+     *
+     * @return {@link List<Option>}
+     */
+    public final List<Option> getRequiredOptions() {
+        return requiredOptions;
+    }
+    /**
+     * Sets the required options of the option.
+     *
+     * @param requiredOptions allowed object is {@link List<Option> }
+     */
+    public final void setRequiredOptions(final List<Option> requiredOptions) {
+        this.requiredOptions = requiredOptions;
+    }
 }
